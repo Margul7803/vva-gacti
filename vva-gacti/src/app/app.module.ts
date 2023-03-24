@@ -8,16 +8,12 @@ import { FormAnimationComponent } from './modules/form-animation/form-animation.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { FormActiviteComponent } from './modules/form-activite/form-activite.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FormAnimationComponent
-  ],
+  declarations: [AppComponent, FormAnimationComponent, FormActiviteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +26,6 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

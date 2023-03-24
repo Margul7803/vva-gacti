@@ -12,7 +12,7 @@ import { Animation } from 'src/app/models/animation';
 @Component({
   selector: 'app-form-animation',
   templateUrl: './form-animation.component.html',
-  styleUrls: ['./form-animation.component.scss']
+  styleUrls: ['./form-animation.component.scss'],
 })
 export class FormAnimationComponent {
   @Input()
@@ -25,10 +25,10 @@ export class FormAnimationComponent {
   @Input()
   model: Animation | null = {
     codeAnimation: '',
-    codeType: null,
+    codeType: '',
     commentaire: '',
     description: '',
-    dateCreation: new Date,
+    dateCreation: new Date(),
     dateValidite: null,
     difficulte: '',
     duree: null,
@@ -68,7 +68,7 @@ export class FormAnimationComponent {
 
   onSubmitForm(): void {
     if (this.animationForm.valid) {
-      console.log(this.animationForm.value)
+      console.log(this.animationForm.value);
 
       this.newAnimation.emit(this.animationForm.value);
     }
