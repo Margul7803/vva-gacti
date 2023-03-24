@@ -1,0 +1,42 @@
+.card-header{
+  padding-top: 6px;
+}
+
+.header {
+  width: 100%;
+}
+
+.card-content{
+  padding-bottom: 2px !important;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.subtitle-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.subtitle-right{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.buttonToggle{
+  top: -8px;
+}
+
+.card-animation{
+  min-width: 500px !important;
+}

@@ -25,7 +25,7 @@ export class FormAnimationComponent {
   @Input()
   model: Animation | null = {
     codeAnimation: '',
-    codeType: '',
+    codeType: null,
     commentaire: '',
     description: '',
     dateCreation: new Date(),
