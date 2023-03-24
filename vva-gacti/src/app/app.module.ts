@@ -11,9 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormActiviteComponent } from './modules/form-activite/form-activite.component';
+import { CardAnimationComponent } from './modules/card-animation/card-animation.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 @NgModule({
-  declarations: [AppComponent, FormAnimationComponent, FormActiviteComponent],
+  declarations: [AppComponent, FormAnimationComponent, FormActiviteComponent, CardAnimationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +28,8 @@ import { FormActiviteComponent } from './modules/form-activite/form-activite.com
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
