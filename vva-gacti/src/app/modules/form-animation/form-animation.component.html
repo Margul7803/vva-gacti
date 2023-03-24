@@ -1,0 +1,114 @@
+<form [formGroup]="animationForm" class="form" (ngSubmit)="onSubmitForm()">
+  <mat-form-field class="form-input">
+    <mat-label for="codeAnimationInput">Code Animation</mat-label>
+    <input matInput type="text" id="codeAnimationInput" formControlName="codeAnimation" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="codeTypeInput">Type</mat-label>
+    <mat-select
+      id="codeTypeSelect"
+      formControlName="codeType"
+      placeholder="Choisir un type d'animation"
+    >
+      <mat-option
+        *ngFor="let codeType of codeTypeList"
+        [value]="codeType.code"
+        >{{ codeType.nom }}</mat-option
+      >
+    </mat-select>
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="dureeInput">Durée</mat-label>
+    <input matInput type="number" id="dureeInput" formControlName="duree" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
+    <input matInput type="number" id="limiteAgeInput" formControlName="limiteAge" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
+    <input matInput type="number" id="limiteAgeInput" formControlName="limiteAge" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="nbPlaceDispoInput">Nombre de place</mat-label>
+    <input matInput type="number" id="nbPlaceDispoInput" formControlName="nbPlaceDispo" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="tarifInput">Tarif</mat-label>
+    <input matInput type="number" id="tarifInput" formControlName="tarif" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="nomInput">Nom</mat-label>
+    <input matInput type="text" id="nomInput" formControlName="nom" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="difficulteInput">Difficulté</mat-label>
+    <input matInput type="text" id="difficulteInput" formControlName="difficulte" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="descrpitionInput">Description</mat-label>
+    <textarea matInput  id="descrpitionInput" formControlName="description"></textarea>
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="commentaireInput">Commentaire</mat-label>
+    <textarea matInput  id="commentaireInput" formControlName="commentaire"></textarea>
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-group">
+    <button class="button-create" mat-button type="submit">
+      {{ isNew ? "Créer" : "Modifier" }}
+    </button>
+    <button
+      class="button-create"
+      mat-button
+      color="warn"
+      type="reset"
+      (click)="onDestroyForm()"
+    >
+      Annuler
+    </button>
+  </div>
+</form>
