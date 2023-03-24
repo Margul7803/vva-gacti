@@ -1,6 +1,6 @@
-export interface Animation{
+export interface Animation {
   codeAnimation: string;
-  codeType: TypeAnim | null;
+  codeType: string;
   nom: string;
   nbPlaceDispo: number | null;
   description: string;
@@ -13,8 +13,7 @@ export interface Animation{
   tarif: number | null;
 }
 
-export interface TypeAnim{
+export interface TypeAnim {
   code: string;
   nom: string;
 }
-

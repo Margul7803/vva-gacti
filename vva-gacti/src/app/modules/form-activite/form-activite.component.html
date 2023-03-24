@@ -1,0 +1,127 @@
+<form [formGroup]="activiteForm" class="form" (ngSubmit)="onSubmitForm()">
+  <mat-form-field class="form-input">
+    <mat-label for="codeAnimationInput">Animation</mat-label>
+    <mat-select
+      id="codeAnimationSelect"
+      formControlName="codeAnimation"
+      placeholder="Choisir un type d'animation">
+      <mat-option
+        *ngFor="let animation of animations"
+        [value]="animation.codeAnimation"
+        >{{ animation.nom }}</mat-option
+      >
+    </mat-select>
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="codeAnimationInput">Date activité</mat-label>
+    <input matInput type="date" id="dateInput" formControlName="date" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="codeEtatInput">Etat</mat-label>
+    <mat-select
+      id="codeEtatSelect"
+      formControlName="codeEtat"
+      placeholder="Choisir l'état">
+      <mat-option *ngFor="let etat of codeEtats" [value]="etat.code">{{
+        etat.nom
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="prixInput">Prix</mat-label>
+    <input matInput type="number" id="prixInput" formControlName="prix" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="heureRendezVousInput">Heure de rendez-vous</mat-label>
+    <input
+      matInput
+      type="time"
+      id="heureRendezVousInput"
+      formControlName="heureRendezVous" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="heureDebutInput">Heure de début</mat-label>
+    <input
+      matInput
+      type="time"
+      id="heureDebutInput"
+      formControlName="heureDebut" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="heureFinInput">Heure de fin</mat-label>
+    <input matInput type="time" id="heureFin" formControlName="heureFin" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="dateAnnuleInput">Date d'annulation</mat-label>
+    <input matInput type="date" id="dateAnnule" formControlName="dateAnnule" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="prixInput">Nom du Responsable</mat-label>
+    <input
+      matInput
+      type="text"
+      id="nomResponsable"
+      formControlName="nomResponsable" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-input">
+    <mat-label for="prenomResponsableInput">Prenom du Responsable</mat-label>
+    <input
+      matInput
+      type="text"
+      id="prenomResponsable"
+      formControlName="prenomResponsable" />
+    <mat-error *ngIf="!activiteForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-group">
+    <button class="button-create" mat-button type="submit">
+      {{ isNew ? 'Créer' : 'Modifier' }}
+    </button>
+    <button
+      class="button-create"
+      mat-button
+      color="warn"
+      type="reset"
+      (click)="onDestroyForm()">
+      Annuler
+    </button>
+  </div>
+</form>

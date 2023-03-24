@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormAnimationComponent } from './form-animation.component';
+import { FormActiviteComponent } from './form-activite.component';
 
-describe('FormAnimationComponent', () => {
-  let component: FormAnimationComponent;
-  let fixture: ComponentFixture<FormAnimationComponent>;
+describe('FormActiviteComponent', () => {
+  let component: FormActiviteComponent;
+  let fixture: ComponentFixture<FormActiviteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormAnimationComponent],
+      declarations: [FormActiviteComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormAnimationComponent);
+    fixture = TestBed.createComponent(FormActiviteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

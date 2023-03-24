@@ -1,7 +1,11 @@
 <form [formGroup]="animationForm" class="form" (ngSubmit)="onSubmitForm()">
   <mat-form-field class="form-input">
     <mat-label for="codeAnimationInput">Code Animation</mat-label>
-    <input matInput type="text" id="codeAnimationInput" formControlName="codeAnimation" />
+    <input
+      matInput
+      type="text"
+      id="codeAnimationInput"
+      formControlName="codeAnimation" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -12,8 +16,7 @@
     <mat-select
       id="codeTypeSelect"
       formControlName="codeType"
-      placeholder="Choisir un type d'animation"
-    >
+      placeholder="Choisir un type d'animation">
       <mat-option
         *ngFor="let codeType of codeTypeList"
         [value]="codeType.code"
@@ -35,7 +38,11 @@
 
   <mat-form-field class="form-input">
     <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
-    <input matInput type="number" id="limiteAgeInput" formControlName="limiteAge" />
+    <input
+      matInput
+      type="number"
+      id="limiteAgeInput"
+      formControlName="limiteAge" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -43,7 +50,11 @@
 
   <mat-form-field class="form-input">
     <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
-    <input matInput type="number" id="limiteAgeInput" formControlName="limiteAge" />
+    <input
+      matInput
+      type="number"
+      id="limiteAgeInput"
+      formControlName="limiteAge" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -51,7 +62,11 @@
 
   <mat-form-field class="form-input">
     <mat-label for="nbPlaceDispoInput">Nombre de place</mat-label>
-    <input matInput type="number" id="nbPlaceDispoInput" formControlName="nbPlaceDispo" />
+    <input
+      matInput
+      type="number"
+      id="nbPlaceDispoInput"
+      formControlName="nbPlaceDispo" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -75,7 +90,11 @@
 
   <mat-form-field class="form-input">
     <mat-label for="difficulteInput">Difficulté</mat-label>
-    <input matInput type="text" id="difficulteInput" formControlName="difficulte" />
+    <input
+      matInput
+      type="text"
+      id="difficulteInput"
+      formControlName="difficulte" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -83,7 +102,10 @@
 
   <mat-form-field class="form-input">
     <mat-label for="descrpitionInput">Description</mat-label>
-    <textarea matInput  id="descrpitionInput" formControlName="description"></textarea>
+    <textarea
+      matInput
+      id="descrpitionInput"
+      formControlName="description"></textarea>
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -91,7 +113,10 @@
 
   <mat-form-field class="form-input">
     <mat-label for="commentaireInput">Commentaire</mat-label>
-    <textarea matInput  id="commentaireInput" formControlName="commentaire"></textarea>
+    <textarea
+      matInput
+      id="commentaireInput"
+      formControlName="commentaire"></textarea>
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -99,15 +124,14 @@
 
   <div class="button-group">
     <button class="button-create" mat-button type="submit">
-      {{ isNew ? "Créer" : "Modifier" }}
+      {{ isNew ? 'Créer' : 'Modifier' }}
     </button>
     <button
       class="button-create"
       mat-button
       color="warn"
       type="reset"
-      (click)="onDestroyForm()"
-    >
+      (click)="onDestroyForm()">
       Annuler
     </button>
   </div>
