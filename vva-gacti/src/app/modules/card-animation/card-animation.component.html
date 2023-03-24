@@ -1,0 +1,42 @@
+<div class="card-animation">
+<mat-card class="card-animation">
+  <mat-card-header class="card-header">
+    <div class="header">
+      <mat-card-title>{{ animationCard.nom }}</mat-card-title>
+      <div class="subtitle-header">
+        <mat-card-subtitle
+          >Type: {{ animationCard.codeType?.nom }}</mat-card-subtitle
+        >
+        <mat-card-subtitle
+          >Jusqu'au
+          {{
+            FormatDateToString(animationCard.dateValidite)
+          }}</mat-card-subtitle
+        >
+      </div>
+      <div class="subtitle-right">
+      <mat-card-subtitle
+        >Place: {{ animationCard.nbPlaceDispo }}</mat-card-subtitle
+      >
+    </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <div class="content">
+      <span> Description:{{ animationCard.description }}</span>
+      <span> Commentaire: {{ animationCard.commentaire }}</span>
+      <span> Tarif: {{ animationCard.tarif }} €</span>
+    </div>
+
+    <div class="content-footer">
+      <span> Age: {{ animationCard.limiteAge }} ans+</span>
+      <span> Difficulté: {{ animationCard.difficulte }}</span>
+      <button mat-raised-button  (click)="togglePanel()" class="buttonToggle" >Voir les activités</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>
+<mat-expansion-panel [expanded]="panelOpenState">
+  <p>This is the primary content of the panel.</p>
+</mat-expansion-panel>
+
