@@ -13,11 +13,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormActiviteComponent } from './modules/form-activite/form-activite.component';
 import { CardAnimationComponent } from './modules/card-animation/card-animation.component';
 import { MatCardModule } from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CardActiviteComponent } from './modules/card-activite/card-activite.component';
 
 @NgModule({
-  declarations: [AppComponent, FormAnimationComponent, FormActiviteComponent, CardAnimationComponent],
+  declarations: [
+    AppComponent,
+    FormAnimationComponent,
+    FormActiviteComponent,
+    CardAnimationComponent,
+    CardActiviteComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,32 @@
+<div class="card-activite">
+  <mat-card class="card-activite">
+    <mat-card-header class="card-header">
+      <div class="header">
+        <mat-card-title>Resonsable: {{ activiteCard.nomResponsable + " " + activiteCard.prenomResponsable}}</mat-card-title>
+        <mat-card-subtitle
+            >
+            Le {{
+              FormatDateToShortDate(activiteCard.date)
+            }}</mat-card-subtitle
+          >
+        </div>
+        <div class="subtitle-header">
+          <mat-card-subtitle
+            >Activité {{ activiteCard.codeEtat?.nom }}</mat-card-subtitle
+          >
+        </div>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+        <span> Heure de rendez-vous: {{ FormatDateToTime(activiteCard.heureRendezVous) }}</span>
+        <span> Début-Fin: {{ FormatDateToTime(activiteCard.heureDebut) + "-" + FormatDateToTime(activiteCard.heureFin) }}</span>
+        <div class="content-footer">
+        <span> Prix: {{ activiteCard.prix }} €</span>
+        <div class="button-group">
+        <button mat-raised-button  (click)="togglePanel()" color="primary" class="buttonAction" >S'inscrire</button>
+        <button mat-raised-button  (click)="togglePanel()" color="warn" class="buttonAction" >Se désinstcrire</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  </div>
+  

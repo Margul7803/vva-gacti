@@ -1,4 +1,4 @@
-.card-header{
+.card-header {
   padding-top: 6px;
 }
 
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.card-content{
+.card-content {
   padding-bottom: 2px !important;
 }
 
@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 
-.content-footer{
+.content-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,15 +28,19 @@
   width: 100%;
 }
 
-.subtitle-right{
+.subtitle-right {
   display: flex;
   flex-direction: row-reverse;
 }
 
-.buttonToggle{
+.buttonToggle {
   top: -8px;
 }
 
-.card-animation{
+.card-animation {
   min-width: 500px !important;
+}
+
+.activite-card{
+  margin-top: 10px;
 }
