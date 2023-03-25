@@ -1,0 +1,28 @@
+<p>
+  <mat-toolbar color="primary">
+    <span>Gacti VVA</span>
+    <span class="button-action">
+    <button mat-button class="button-toolbar">Animation</button>
+    <button mat-button [matMenuTriggerFor]="espace" class="button-toolbar">Espace Encadrant</button>
+    </span>
+    <mat-menu #espace="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="animation">Animation</button>
+      <button mat-menu-item [matMenuTriggerFor]="activite">Activité</button>
+    </mat-menu>
+
+    <mat-menu #animation="matMenu">
+      <button mat-menu-item>Ajouter une animation</button>
+      <button mat-menu-item>Modifier une animation</button>
+    </mat-menu>
+
+    <mat-menu #activite="matMenu">
+      <button mat-menu-item>Ajouter une activite</button>
+      <button mat-menu-item>Annuler une activité</button>
+      <button mat-menu-item>Modifier une activité</button>
+    </mat-menu>
+
+    <button mat-icon-button><mat-icon class="icon-display">account_circle</mat-icon></button>
+
+  </mat-toolbar>
+</p>
+<router-outlet></router-outlet>

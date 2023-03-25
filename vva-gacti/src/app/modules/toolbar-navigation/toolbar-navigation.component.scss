@@ -1,0 +1,16 @@
+.icon-display {
+  transform: scale(1.8);
+}
+
+.button-toolbar{
+  margin-left:10px ;
+  margin-right:10px ;
+  transform: scale(100%);
+}
+
+.button-action{
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
