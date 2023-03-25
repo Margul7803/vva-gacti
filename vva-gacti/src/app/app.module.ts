@@ -15,6 +15,11 @@ import { CardAnimationComponent } from './modules/card-animation/card-animation.
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CardActiviteComponent } from './modules/card-activite/card-activite.component';
+import { ToolbarNavigationComponent } from './modules/toolbar-navigation/toolbar-navigation.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +28,7 @@ import { CardActiviteComponent } from './modules/card-activite/card-activite.com
     FormActiviteComponent,
     CardAnimationComponent,
     CardActiviteComponent,
+    ToolbarNavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,9 @@ import { CardActiviteComponent } from './modules/card-activite/card-activite.com
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
