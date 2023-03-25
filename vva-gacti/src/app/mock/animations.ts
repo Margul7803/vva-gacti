@@ -8,18 +8,20 @@ export const codeTypeList: TypeAnim[] = [
   { code: '3', nom: 'balande ne rivière' },
 ];
 
-export const animation:Animation = {codeAnimation: 'Anim1',
-codeType: codeTypeList[1],
-commentaire: 'très bonne anim',
-dateCreation: dateMock,
-dateValidite: dateMock,
-description: 'desc',
-difficulte: 'qsdazd',
-duree: 2,
-limiteAge: 4,
-nbPlaceDispo: 5,
-nom: 'Animation numéro 1',
-tarif: 2,}
+export const animation: Animation = {
+  codeAnimation: 'Anim1',
+  codeType: codeTypeList[1],
+  commentaire: 'très bonne anim',
+  dateCreation: dateMock,
+  dateValidite: dateMock,
+  description: 'desc',
+  difficulte: 'qsdazd',
+  duree: 2,
+  limiteAge: 4,
+  nbPlaceDispo: 5,
+  nom: 'Animation numéro 1',
+  tarif: 2,
+};
 
 export const Animations: Animation[] = [
   {

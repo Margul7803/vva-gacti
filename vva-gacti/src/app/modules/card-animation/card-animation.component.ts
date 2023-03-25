@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { activites } from 'src/app/mock/activite';
 import { animation } from 'src/app/mock/animations';
 import { Animation } from 'src/app/models/animation';
 
@@ -11,13 +12,16 @@ export class CardAnimationComponent {
   @Input()
   animationCard = animation;
 
+  @Input()
+  activitesCard = activites;
+  
   panelOpenState: boolean = false;
 
   togglePanel() {
-    this.panelOpenState = !this.panelOpenState
+    this.panelOpenState = !this.panelOpenState;
   }
 
-  FormatDateToString(date: Date | null): string {
+  FormatDateToShortDate(date: Date | null): string {
     if (date !== null) {
       const day = date.getDate();
       const month = date.getMonth() + 1;
