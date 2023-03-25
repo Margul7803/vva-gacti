@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CardAnimationComponent } from './modules/card-animation/card-animation.component';
+import { PageEspaceEncadrantAnimationComponent } from './pages/page-espace-encadrant-animation/page-espace-encadrant-animation.component';
 
 const routes: Routes = [{
-  path: 'animation',
-  component: CardAnimationComponent,
+  path: 'espace-encadrant-animation',
+  component: PageEspaceEncadrantAnimationComponent,
 },];
 
 @NgModule({

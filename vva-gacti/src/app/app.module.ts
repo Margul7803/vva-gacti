@@ -19,6 +19,9 @@ import { ToolbarNavigationComponent } from './modules/toolbar-navigation/toolbar
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { PageEspaceEncadrantAnimationComponent } from './pages/page-espace-encadrant-animation/page-espace-encadrant-animation.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -29,6 +32,7 @@ import {MatIconModule} from '@angular/material/icon';
     CardAnimationComponent,
     CardActiviteComponent,
     ToolbarNavigationComponent,
+    PageEspaceEncadrantAnimationComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatTabsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

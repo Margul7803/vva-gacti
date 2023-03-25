@@ -1,4 +1,13 @@
-<form [formGroup]="animationForm" class="form" (ngSubmit)="onSubmitForm()">
+<form [formGroup]="animationForm" (ngSubmit)="onSubmitForm()">
+  <mat-form-field class="form-input">
+    <mat-label for="nomInput">Nom</mat-label>
+    <input matInput type="text" id="nomInput" formControlName="nom" />
+    <mat-error *ngIf="!animationForm.hasError('required')">
+      Le champ est <strong>requis</strong>
+    </mat-error>
+  </mat-form-field>
+  <div class="form-inputs">
+  <div>
   <mat-form-field class="form-input">
     <mat-label for="codeAnimationInput">Code Animation</mat-label>
     <input
@@ -71,18 +80,12 @@
       Le champ est <strong>requis</strong>
     </mat-error>
   </mat-form-field>
+</div>
 
+<div>
   <mat-form-field class="form-input">
     <mat-label for="tarifInput">Tarif</mat-label>
     <input matInput type="number" id="tarifInput" formControlName="tarif" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="nomInput">Nom</mat-label>
-    <input matInput type="text" id="nomInput" formControlName="nom" />
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -105,7 +108,7 @@
     <textarea
       matInput
       id="descrpitionInput"
-      formControlName="description"></textarea>
+      formControlName="description" style="height: 102px;"></textarea>
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
@@ -116,12 +119,13 @@
     <textarea
       matInput
       id="commentaireInput"
-      formControlName="commentaire"></textarea>
+      formControlName="commentaire" style="height: 102px;"></textarea>
     <mat-error *ngIf="!animationForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
   </mat-form-field>
-
+</div>
+</div>
   <div class="button-group">
     <button class="button-create" mat-button type="submit">
       {{ isNew ? 'Créer' : 'Modifier' }}
@@ -135,4 +139,5 @@
       Annuler
     </button>
   </div>
+  
 </form>

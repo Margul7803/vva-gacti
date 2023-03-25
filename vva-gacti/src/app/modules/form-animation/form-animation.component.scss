@@ -6,3 +6,16 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.form-inputs{
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
+}
+
+@media screen and (max-width: 530px){
+  .form-inputs{
+    display: flex;
+    flex-flow: column;
+  }
+}
