@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,12 +16,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CardActiviteComponent } from './modules/card-activite/card-activite.component';
 import { ToolbarNavigationComponent } from './modules/toolbar-navigation/toolbar-navigation.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { PageEspaceEncadrantAnimationComponent } from './pages/page-espace-encadrant-animation/page-espace-encadrant-animation.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { StoreModule } from '@ngrx/store';
+import { PageEspaceEncadrantActiviteComponent } from './pages/page-espace-encadrant-activite/page-espace-encadrant-activite.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { EffectsModule } from '@ngrx/effects';
+import { animationReducer } from './state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -33,6 +38,7 @@ import { StoreModule } from '@ngrx/store';
     CardActiviteComponent,
     ToolbarNavigationComponent,
     PageEspaceEncadrantAnimationComponent,
+    PageEspaceEncadrantActiviteComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,13 @@ import { StoreModule } from '@ngrx/store';
     MatMenuModule,
     MatIconModule,
     MatTabsModule,
-    StoreModule.forRoot({}, {}),
+    MatDatepickerModule,
+    StoreModule.forRoot(
+      {'animation-state': animationReducer,}
+      ),
+
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],

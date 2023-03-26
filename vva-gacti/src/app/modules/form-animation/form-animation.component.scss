@@ -7,15 +7,23 @@
   justify-content: space-evenly;
 }
 
-.form-inputs{
+.form-inputs {
   display: flex;
   flex-flow: row;
   gap: 10px;
 }
 
-@media screen and (max-width: 530px){
-  .form-inputs{
+.column{
+  width: 50%;
+}
+
+@media screen and (max-width: 530px) {
+  .form-inputs {
     display: flex;
     flex-flow: column;
+  }
+
+  .column{
+    width: 100%;
   }
 }

@@ -7,125 +7,126 @@
     </mat-error>
   </mat-form-field>
   <div class="form-inputs">
-  <div>
-  <mat-form-field class="form-input">
-    <mat-label for="codeAnimationInput">Code Animation</mat-label>
-    <input
-      matInput
-      type="text"
-      id="codeAnimationInput"
-      formControlName="codeAnimation" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+    <div class="column">
+      <mat-form-field class="form-input">
+        <mat-label for="codeAnimationInput">Code Animation</mat-label>
+        <input
+          matInput
+          type="text"
+          id="codeAnimationInput"
+          formControlName="codeAnimation" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="codeTypeInput">Type</mat-label>
-    <mat-select
-      id="codeTypeSelect"
-      formControlName="codeType"
-      placeholder="Choisir un type d'animation">
-      <mat-option
-        *ngFor="let codeType of codeTypeList"
-        [value]="codeType.code"
-        >{{ codeType.nom }}</mat-option
-      >
-    </mat-select>
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="codeTypeInput">Type</mat-label>
+        <mat-select
+          id="codeTypeSelect"
+          formControlName="codeType"
+          placeholder="Choisir un type d'animation">
+          <mat-option
+            *ngFor="let codeType of codeTypeList"
+            [value]="codeType.code"
+            >{{ codeType.nom }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="dureeInput">Durée</mat-label>
-    <input matInput type="number" id="dureeInput" formControlName="duree" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="dureeInput">Durée</mat-label>
+        <input matInput type="number" id="dureeInput" formControlName="duree" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
-    <input
-      matInput
-      type="number"
-      id="limiteAgeInput"
-      formControlName="limiteAge" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
+        <input
+          matInput
+          type="number"
+          id="limiteAgeInput"
+          formControlName="limiteAge" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="limiteAgeInput">Limite d'Age</mat-label>
-    <input
-      matInput
-      type="number"
-      id="limiteAgeInput"
-      formControlName="limiteAge" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="nbPlaceDispoInput">Nombre de place</mat-label>
+        <input
+          matInput
+          type="number"
+          id="nbPlaceDispoInput"
+          formControlName="nbPlaceDispo" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="nbPlaceDispoInput">Nombre de place</mat-label>
-    <input
-      matInput
-      type="number"
-      id="nbPlaceDispoInput"
-      formControlName="nbPlaceDispo" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-</div>
+      <mat-form-field class="form-input">
+        <mat-label for="dateValiditeInput">Date de validité</mat-label>
+        <input matInput type="date" id="dateValiditeInput" formControlName="dateValidite" />
+        <mat-error *ngIf="animationForm.get('dateValidite')?.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+        <mat-error *ngIf="animationForm.get('dateValidite')?.hasError('dateValid')">
+          La date doit être <strong>supérieur</strong> à aujourd'hui.
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-<div>
-  <mat-form-field class="form-input">
-    <mat-label for="tarifInput">Tarif</mat-label>
-    <input matInput type="number" id="tarifInput" formControlName="tarif" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+    <div class="column">
+      <mat-form-field class="form-input">
+        <mat-label for="tarifInput">Tarif</mat-label>
+        <input matInput type="number" id="tarifInput" formControlName="tarif" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="difficulteInput">Difficulté</mat-label>
-    <input
-      matInput
-      type="text"
-      id="difficulteInput"
-      formControlName="difficulte" />
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="difficulteInput">Difficulté</mat-label>
+        <input
+          matInput
+          type="text"
+          id="difficulteInput"
+          formControlName="difficulte" />
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="descrpitionInput">Description</mat-label>
-    <textarea
-      matInput
-      id="descrpitionInput"
-      formControlName="description" style="height: 102px;"></textarea>
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label for="descrpitionInput">Description</mat-label>
+        <textarea
+          matInput
+          id="descrpitionInput"
+          formControlName="description"
+          style="height: 102px"></textarea>
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="form-input">
-    <mat-label for="commentaireInput">Commentaire</mat-label>
-    <textarea
-      matInput
-      id="commentaireInput"
-      formControlName="commentaire" style="height: 102px;"></textarea>
-    <mat-error *ngIf="!animationForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-</div>
-</div>
+      <mat-form-field class="form-input">
+        <mat-label for="commentaireInput">Commentaire</mat-label>
+        <textarea
+          matInput
+          id="commentaireInput"
+          formControlName="commentaire"
+          style="height: 105px"></textarea>
+        <mat-error *ngIf="!animationForm.hasError('required')">
+          Le champ est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
   <div class="button-group">
     <button class="button-create" mat-button type="submit">
       {{ isNew ? 'Créer' : 'Modifier' }}
@@ -139,5 +140,4 @@
       Annuler
     </button>
   </div>
-  
 </form>

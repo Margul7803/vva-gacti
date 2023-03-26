@@ -1,7 +1,7 @@
 import { Animation } from './animation';
 
 export interface Activite {
-  codeAnimation: string;
+  codeAnimation: Animation | null;
   date: Date | null;
   codeEtat: EtatActivite | null;
   heureRendezVous: Date | null;

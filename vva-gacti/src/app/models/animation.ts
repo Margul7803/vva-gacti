@@ -8,7 +8,7 @@ export interface Animation {
   limiteAge: number | null;
   difficulte: string;
   dateCreation: Date;
-  dateValidite: Date | null;
+  dateValidite: Date;
   duree: number | null;
   tarif: number | null;
 }

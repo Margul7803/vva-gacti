@@ -8,9 +8,8 @@ describe('PageEspaceEncadrantAnimationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageEspaceEncadrantAnimationComponent ]
-    })
-    .compileComponents();
+      declarations: [PageEspaceEncadrantAnimationComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PageEspaceEncadrantAnimationComponent);
     component = fixture.componentInstance;
