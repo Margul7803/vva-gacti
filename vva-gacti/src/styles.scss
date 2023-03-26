@@ -12,3 +12,7 @@ body {
   .mat-expansion-panel-body {
   padding: 0 !important;
 }
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
