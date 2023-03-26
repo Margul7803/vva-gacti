@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageAnimationListComponent } from './pages/page-animation-list/page-animation-list.component';
 import { PageEspaceEncadrantActiviteComponent } from './pages/page-espace-encadrant-activite/page-espace-encadrant-activite.component';
 import { PageEspaceEncadrantAnimationComponent } from './pages/page-espace-encadrant-animation/page-espace-encadrant-animation.component';
 
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'espace-encadrant-activite',
     component: PageEspaceEncadrantActiviteComponent,
+  },
+  {
+    path: 'animation-list',
+    component: PageAnimationListComponent,
   },
 ];
 

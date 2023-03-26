@@ -27,6 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EffectsModule } from '@ngrx/effects';
 import { animationReducer } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { PageAnimationListComponent } from './pages/page-animation-list/page-animation-list.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ToolbarNavigationComponent,
     PageEspaceEncadrantAnimationComponent,
     PageEspaceEncadrantActiviteComponent,
+    PageAnimationListComponent,
   ],
   imports: [
     BrowserModule,

@@ -41,7 +41,9 @@
 <mat-expansion-panel
   [expanded]="panelOpenState"
   class="remove-mat-expansion-panel-padding">
+  <div class="cards">
   <div *ngFor="let activite of activitesCard" class="activite-card">
     <app-card-activite [activiteCard]="activite"></app-card-activite>
   </div>
+</div>
 </mat-expansion-panel>
