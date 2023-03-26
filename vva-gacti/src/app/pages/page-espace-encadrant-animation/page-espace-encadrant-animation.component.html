@@ -1,0 +1,30 @@
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Ajouter une animation">
+    <div class="animation-form">
+      <app-form-animation [isNew]="true"></app-form-animation>
+    </div>
+  </mat-tab>
+  <mat-tab label="Modifier une animation">
+    <form [formGroup]="selectAnimationFrom">
+      <mat-form-field class="form-input">
+        <mat-label for="codeTypeInput">Type</mat-label>
+        <mat-select
+          id="codeTypeSelect"
+          formControlName="selectAnimation"
+          placeholder="Choisir un type d'animation">
+          <mat-option
+            *ngFor="let animation of animations"
+            [value]="animation"
+            >{{ animation.codeAnimation }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <button class="button-create" mat-button type="submit" (click)="onSubmitForm()">
+        Rechercher
+      </button>
+    </form>
+      <div class="activite-form">
+        <app-form-activite [isNew]="false" [model]="null"></app-form-activite>
+      </div>
+  </mat-tab>
+</mat-tab-group>

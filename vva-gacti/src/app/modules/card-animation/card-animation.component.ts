@@ -14,7 +14,7 @@ export class CardAnimationComponent {
 
   @Input()
   activitesCard = activites;
-  
+
   panelOpenState: boolean = false;
 
   togglePanel() {

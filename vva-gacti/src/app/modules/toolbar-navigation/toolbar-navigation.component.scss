@@ -1,16 +1,32 @@
-.icon-display {
-  transform: scale(1.8);
-}
-
-.button-toolbar{
-  margin-left:10px ;
-  margin-right:10px ;
-  transform: scale(100%);
-}
-
-.button-action{
+.button-action {
   width: 100%;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+}
+.button-toolbar-animation-icon {
+  display: none;
+}
+.button-toolbar-espace-encadrant-icon {
+  display: none;
+}
+.title-site {
+  margin-right: 40px;
+}
+@media screen and (max-width: 500px) {
+  .button-toolbar-animation {
+    display: none;
+  }
+  .button-toolbar-espace-encadrant {
+    display: none;
+  }
+  .button-toolbar-animation-icon {
+    display: flex;
+  }
+  .button-toolbar-espace-encadrant-icon {
+    display: flex;
+  }
+  .title-site {
+    margin-right: 0px;
+  }
 }

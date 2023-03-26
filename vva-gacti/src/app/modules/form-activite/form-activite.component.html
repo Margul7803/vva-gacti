@@ -1,4 +1,18 @@
 <form [formGroup]="activiteForm" class="form" (ngSubmit)="onSubmitForm()">
+  <div class="form-inputs">
+  <div class="column">
+    <mat-form-field class="form-input">
+      <mat-label for="nomResponsableInput">Nom du Responsable</mat-label>
+      <input
+        matInput
+        type="text"
+        id="nomResponsable"
+        formControlName="nomResponsable" />
+      <mat-error *ngIf="!activiteForm.hasError('required')">
+        Le champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+
   <mat-form-field class="form-input">
     <mat-label for="codeAnimationInput">Animation</mat-label>
     <mat-select
@@ -7,7 +21,7 @@
       placeholder="Choisir un type d'animation">
       <mat-option
         *ngFor="let animation of animations"
-        [value]="animation.codeAnimation"
+        [value]="animation"
         >{{ animation.nom }}</mat-option
       >
     </mat-select>
@@ -17,33 +31,13 @@
   </mat-form-field>
 
   <mat-form-field class="form-input">
-    <mat-label for="codeAnimationInput">Date activité</mat-label>
+    <mat-label for="dateInput">Date activité</mat-label>
     <input matInput type="date" id="dateInput" formControlName="date" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
+    <mat-error *ngIf="activiteForm.get('date')?.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="codeEtatInput">Etat</mat-label>
-    <mat-select
-      id="codeEtatSelect"
-      formControlName="codeEtat"
-      placeholder="Choisir l'état">
-      <mat-option *ngFor="let etat of codeEtats" [value]="etat.code">{{
-        etat.nom
-      }}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="!activiteForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="prixInput">Prix</mat-label>
-    <input matInput type="number" id="prixInput" formControlName="prix" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
-      Le champ est <strong>requis</strong>
+    <mat-error *ngIf="activiteForm.get('date')?.hasError('dateValid')">
+      la date doit être <strong>inférieur</strong> à la date de validité.
     </mat-error>
   </mat-form-field>
 
@@ -53,64 +47,78 @@
       matInput
       type="time"
       id="heureRendezVousInput"
-      formControlName="heureRendezVous" />
+      formControlName="heureRendezVous"
+      />
     <mat-error *ngIf="!activiteForm.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
   </mat-form-field>
+</div>
 
+  <div class="column">
+    <mat-form-field class="form-input">
+      <mat-label for="prenomResponsableInput">Prenom du Responsable</mat-label>
+      <input
+        matInput
+        type="text"
+        id="prenomResponsable"
+        formControlName="prenomResponsable" />
+      <mat-error *ngIf="!activiteForm.hasError('required')">
+        Le champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form-input">
+      <mat-label for="codeEtatInput">Etat</mat-label>
+      <mat-select
+        id="codeEtatSelect"
+        formControlName="codeEtat"
+        placeholder="Choisir l'état">
+        <mat-option *ngFor="let etat of codeEtats" [value]="etat.code">{{
+          etat.nom
+        }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!activiteForm.hasError('required')">
+        Le champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <mat-label for="prixInput">Prix</mat-label>
+      <input matInput type="number" id="prixInput" formControlName="prix" style="height: 26px" />
+      <mat-error *ngIf="!activiteForm.hasError('required')">
+        Le champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+    <div class="hour-range">
   <mat-form-field class="form-input">
     <mat-label for="heureDebutInput">Heure de début</mat-label>
     <input
       matInput
       type="time"
       id="heureDebutInput"
-      formControlName="heureDebut" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
+      formControlName="heureDebut" 
+      [min]="activiteForm.value.heureRendezVous"/>
+    <mat-error *ngIf="activiteForm.get('heureDebut')?.hasError('required')">
       Le champ est <strong>requis</strong>
+    </mat-error>
+    <mat-error *ngIf="activiteForm.get('heureDebut')?.hasError('timeRange1')">
+      Heure de début doit être <strong>supérieur</strong> à l'heure de rendez-vous.
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="form-input">
     <mat-label for="heureFinInput">Heure de fin</mat-label>
     <input matInput type="time" id="heureFin" formControlName="heureFin" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
+    <mat-error *ngIf="activiteForm.get('heureFin')?.hasError('required')">
       Le champ est <strong>requis</strong>
     </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="dateAnnuleInput">Date d'annulation</mat-label>
-    <input matInput type="date" id="dateAnnule" formControlName="dateAnnule" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
-      Le champ est <strong>requis</strong>
+    <mat-error *ngIf="activiteForm.get('heureFin')?.hasError('timeRange2')">
+      Heure de fin doit être <strong>supérieur</strong> à l'heure de début.
     </mat-error>
   </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="prixInput">Nom du Responsable</mat-label>
-    <input
-      matInput
-      type="text"
-      id="nomResponsable"
-      formControlName="nomResponsable" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="form-input">
-    <mat-label for="prenomResponsableInput">Prenom du Responsable</mat-label>
-    <input
-      matInput
-      type="text"
-      id="prenomResponsable"
-      formControlName="prenomResponsable" />
-    <mat-error *ngIf="!activiteForm.hasError('required')">
-      Le champ est <strong>requis</strong>
-    </mat-error>
-  </mat-form-field>
-
+</div>
+</div>
+</div>
   <div class="button-group">
     <button class="button-create" mat-button type="submit">
       {{ isNew ? 'Créer' : 'Modifier' }}

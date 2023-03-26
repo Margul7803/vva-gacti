@@ -3,8 +3,6 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  FormControl,
-  FormArray,
 } from '@angular/forms';
 import { codeTypeList } from 'src/app/mock/animations';
 import { Animation } from 'src/app/models/animation';
@@ -29,7 +27,7 @@ export class FormAnimationComponent {
     commentaire: '',
     description: '',
     dateCreation: new Date(),
-    dateValidite: null,
+    dateValidite: new Date(),
     difficulte: '',
     duree: null,
     limiteAge: null,
@@ -51,8 +49,8 @@ export class FormAnimationComponent {
         codeType: [this.model?.codeType, Validators.required],
         commentaire: [this.model?.commentaire, Validators.required],
         description: [this.model?.description, Validators.required],
-        dateCreation: [this.model?.dateCreation, Validators.required],
-        dateValidite: [this.model?.dateValidite, Validators.required],
+        dateCreation: [this.model?.dateCreation],
+        dateValidite: [this.FormatDateToShortDate(this.model?.dateValidite), Validators.required],
         difficulte: [this.model?.difficulte, Validators.required],
         duree: [this.model?.duree, Validators.required],
         limiteAge: [this.model?.limiteAge, Validators.required],
@@ -62,14 +60,49 @@ export class FormAnimationComponent {
       },
       {
         updateOn: 'submit',
+        validators: [this.DateAnnValidator],
       }
     );
+  }
+
+  FormatDateToShortDate(date: Date | undefined): string {
+    if (date !== undefined) {
+      const day = date.getDate();
+      let month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      if(month < 10){
+        return year + '-' + "0" +month + '-' + day;
+      }
+      else{
+        return year + '-' + month + '-' + day;
+      }
+    } else {
+      return '';
+    }
+  }
+
+  DateAnnValidator(activiteForm: FormGroup) {
+    const date = activiteForm.get('dateValidite')?.value;
+    const dateNow = new Date()
+    const day = dateNow.getDate();
+    let month = (dateNow.getMonth() + 1);
+    let monthstr = (dateNow.getMonth() + 1).toString();
+    const year = dateNow.getFullYear();
+    if(month < 10){
+     monthstr = "0"+monthstr
+    }
+    const shrotdateNow = year?.toString() + '-' + monthstr + '-' + day?.toString()
+
+    if (date <= shrotdateNow) {
+      activiteForm.controls['dateValidite'].setErrors({ dateValid: true });
+      return { dateValid: true };
+    }
+    return null;
   }
 
   onSubmitForm(): void {
     if (this.animationForm.valid) {
       console.log(this.animationForm.value);
-
       this.newAnimation.emit(this.animationForm.value);
     }
   }

@@ -6,3 +6,29 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.form-inputs {
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
+}
+
+.hour-range{
+  display: flex;
+  flex-flow: row;
+}
+
+.column{
+  width: 50%;
+}
+
+@media screen and (max-width: 530px) {
+  .form-inputs {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .column{
+    width: 100%;
+  }
+}

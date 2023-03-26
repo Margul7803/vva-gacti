@@ -4,7 +4,7 @@ import { activite } from 'src/app/mock/activite';
 @Component({
   selector: 'app-card-activite',
   templateUrl: './card-activite.component.html',
-  styleUrls: ['./card-activite.component.scss']
+  styleUrls: ['./card-activite.component.scss'],
 })
 export class CardActiviteComponent {
   @Input()
@@ -13,7 +13,7 @@ export class CardActiviteComponent {
   panelOpenState: boolean = false;
 
   togglePanel() {
-    this.panelOpenState = !this.panelOpenState
+    this.panelOpenState = !this.panelOpenState;
   }
 
   FormatDateToShortDate(date: Date | null): string {
