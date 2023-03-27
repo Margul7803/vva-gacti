@@ -5,6 +5,7 @@
     </div>
   </mat-tab>
   <mat-tab label="Modifier une animation">
+    <div class="animation-form">
     <form [formGroup]="selectAnimationFrom">
       <mat-form-field class="form-input">
         <mat-label for="codeTypeInput">Type</mat-label>
@@ -26,5 +27,6 @@
       <div class="activite-form">
         <app-form-activite [isNew]="false" [model]="null"></app-form-activite>
       </div>
+    </div>
   </mat-tab>
 </mat-tab-group>

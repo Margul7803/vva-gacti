@@ -5,6 +5,7 @@
     </div>
   </mat-tab>
   <mat-tab label="Modifier une activite">
+    <div class="activite-form">
     <form [formGroup]="selectActiviteFrom">
     <mat-form-field class="form-input">
       <mat-label for="codeTypeInput">Type</mat-label>
@@ -23,7 +24,6 @@
       Rechercher
     </button>
   </form>
-    <div class="activite-form">
       <app-form-activite [isNew]="false" [model]="null"></app-form-activite>
     </div>
   </mat-tab>

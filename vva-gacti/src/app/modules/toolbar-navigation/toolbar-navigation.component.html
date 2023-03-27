@@ -27,9 +27,18 @@
         Activité
       </button>
     </mat-menu>
-    <button mat-icon-button>
+    <button mat-icon-button  [matMenuTriggerFor]="account">
       <mat-icon class="icon-display">account_circle</mat-icon>
     </button>
+    <mat-menu #account="matMenu">
+      <button mat-menu-item routerLink="/user-info">
+        Mon compte
+      </button>
+      <button mat-menu-item>
+        Se déconnecté
+      </button>
+    </mat-menu>
+    
   </mat-toolbar>
 </p>
 <router-outlet></router-outlet>

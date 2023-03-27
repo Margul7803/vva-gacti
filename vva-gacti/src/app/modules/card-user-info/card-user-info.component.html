@@ -1,0 +1,35 @@
+<div *ngIf="userCard"> 
+  <mat-card>
+    <div class="header-card">
+      <div class="nom-prenom">
+        <span>
+      Nom: {{userCard.nom}}
+    </span>
+    
+    <span>
+      Prénom: {{userCard.prenom}}</span>
+    </div>
+    
+    <span>
+      Nom d'utilisateur: {{userCard.user}}</span>
+    </div><div class="card-user-info">
+    <div class="column">
+    <span>
+    Date d'inscription: {{FormatDateToShortDate(userCard.dateInscr)}}</span>
+    <span>
+    Date de fin du compte: {{FormatDateToShortDate(userCard.dateFerm)}}</span>
+    <span>
+    Date de sejour: {{FormatDateToShortDate(userCard.dateDebutSej)}} au {{FormatDateToShortDate(userCard.dateFinSej)}}</span>
+  
+</div>
+  <div class="column">
+  <span>
+    Tel: {{userCard.tel}}</span>
+    <span>
+    Mail: {{userCard.mail}}</span>
+    <span>
+    Profil: {{userCard.type}}</span>
+  </div>
+</div>
+  </mat-card>
+</div> 
