@@ -1,0 +1,32 @@
+.card-user-info{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 5%;
+}
+
+.column{
+  display: flex;
+  flex-flow: column;
+}
+
+.nom-prenom{
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-bottom: 4%;
+  font-weight: bold;
+}
+
+.header-card{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  font-size: 20px;
+  margin: 5% 5% 0% 5%;
+}
+span{
+  padding: 1.2vw;
+}

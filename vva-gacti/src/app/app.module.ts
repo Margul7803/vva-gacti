@@ -28,6 +28,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { animationReducer } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PageAnimationListComponent } from './pages/page-animation-list/page-animation-list.component';
+import { PageUserInfoComponent } from './pages/page-user-info/page-user-info.component';
+import { CardUserInfoComponent } from './modules/card-user-info/card-user-info.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { PageAnimationListComponent } from './pages/page-animation-list/page-ani
     PageEspaceEncadrantAnimationComponent,
     PageEspaceEncadrantActiviteComponent,
     PageAnimationListComponent,
+    PageUserInfoComponent,
+    CardUserInfoComponent,
   ],
   imports: [
     BrowserModule,

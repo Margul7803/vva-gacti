@@ -11,8 +11,10 @@ body {
   .mat-expansion-panel-content
   .mat-expansion-panel-body {
   padding: 0 !important;
+  min-width: 500px !important;
 }
 
 .mat-expansion-panel:not([class*='mat-elevation-z']) {
   box-shadow: none;
+  min-width: 500px !important;
 }
