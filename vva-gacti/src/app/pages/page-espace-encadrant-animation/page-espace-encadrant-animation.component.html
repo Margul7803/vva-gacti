@@ -1,18 +1,19 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab label="Ajouter une animation">
     <div class="animation-form">
-      <app-form-animation [isNew]="true"></app-form-animation>
+      <app-form-animation-conatiner
+        [isNew]="true"></app-form-animation-conatiner>
     </div>
   </mat-tab>
   <mat-tab label="Modifier une animation">
-    <div class="animation-form">
-    <form [formGroup]="selectAnimationFrom">
+    <div *ngIf="animationList$ | async as animations" class="animation-form">
       <mat-form-field class="form-input">
-        <mat-label for="codeTypeInput">Type</mat-label>
+        <mat-label for="codeTypeInput">Code</mat-label>
         <mat-select
-          id="codeTypeSelect"
-          formControlName="selectAnimation"
-          placeholder="Choisir un type d'animation">
+          [(ngModel)]="selectedAnimation"
+          (opened)="clearSelection()"
+          (selectionChange)="selectAnimation()"
+          placeholder="Choisir un code d'animation">
           <mat-option
             *ngFor="let animation of animations"
             [value]="animation"
@@ -20,12 +21,14 @@
           >
         </mat-select>
       </mat-form-field>
-      <button class="button-create" mat-button type="submit" (click)="onSubmitForm()">
-        Rechercher
+      <button mat-button (click)="clearSelection()">
+        Effacer la sélection
       </button>
-    </form>
-      <div class="activite-form">
-        <app-form-activite [isNew]="false" [model]="null"></app-form-activite>
+      <div *ngIf="selectedAnimation" class="animations-list">
+        <div class="animation">
+          <app-form-animation-conatiner
+            [isNew]="false"></app-form-animation-conatiner>
+        </div>
       </div>
     </div>
   </mat-tab>

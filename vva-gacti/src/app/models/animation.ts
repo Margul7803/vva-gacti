@@ -1,3 +1,5 @@
+import { Activite } from './activite';
+
 export interface Animation {
   codeAnimation: string;
   codeType: TypeAnim | null;
@@ -7,10 +9,11 @@ export interface Animation {
   commentaire: string;
   limiteAge: number | null;
   difficulte: string;
-  dateCreation: Date;
-  dateValidite: Date;
+  dateCreation: string;
+  dateValidite: string;
   duree: number | null;
   tarif: number | null;
+  listActivite: Activite[] | null;
 }
 
 export interface TypeAnim {

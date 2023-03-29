@@ -8,9 +8,8 @@ describe('PageAnimationListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageAnimationListComponent ]
-    })
-    .compileComponents();
+      declarations: [PageAnimationListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PageAnimationListComponent);
     component = fixture.componentInstance;

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadAnimationList } from './state';
+import { loadActiviteList } from './state/activite-state';
+import { loadAnimationList } from './state/animation-state';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'vva-gacti';
 
-  constructor(private store: Store){}
+  constructor(private store: Store) {}
   ngOnInit(): void {
-    console.log("cc")
     this.store.dispatch(loadAnimationList());
+    this.store.dispatch(loadActiviteList());
   }
 }

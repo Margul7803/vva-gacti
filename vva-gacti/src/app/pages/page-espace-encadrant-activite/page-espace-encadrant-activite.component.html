@@ -1,30 +1,50 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab label="Ajouter une activite">
     <div class="activite-form">
-      <app-form-activite [isNew]="true"></app-form-activite>
+      <app-form-activite-conatiner [isNew]="true"></app-form-activite-conatiner>
     </div>
   </mat-tab>
   <mat-tab label="Modifier une activite">
-    <div class="activite-form">
-    <form [formGroup]="selectActiviteFrom">
-    <mat-form-field class="form-input">
-      <mat-label for="codeTypeInput">Type</mat-label>
-      <mat-select
-        id="codeTypeSelect"
-        formControlName="selectActivite"
-        placeholder="Choisir un type d'animation">
-        <mat-option
-          *ngFor="let activite of activites"
-          [value]="activite"
-          >{{ activite.codeAnimation?.codeAnimation }}</mat-option
-        >
-      </mat-select>
-    </mat-form-field>
-    <button class="button-create" mat-button type="submit" (click)="onSubmitForm()">
-      Rechercher
-    </button>
-  </form>
-      <app-form-activite [isNew]="false" [model]="null"></app-form-activite>
+    <div *ngIf="animationList$ | async as animations" class="activite-form">
+      <div *ngIf="activiteList$ | async as activites">
+        <mat-form-field class="form-input">
+          <mat-label for="codeTypeInput">Code</mat-label>
+          <mat-select
+            [(ngModel)]="selectedAnimation"
+            (opened)="clearSelectionCode()"
+            (selectionChange)="selectAnimation()"
+            placeholder="Choisir un code d'animation">
+            <mat-option
+              *ngFor="let animation of animations"
+              [value]="animation"
+              >{{ animation.codeAnimation }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-input">
+          <mat-label for="codeTypeInput">Date d'activité</mat-label>
+          <mat-select
+            [(ngModel)]="selectedActivite"
+            (opened)="clearSelectionDate()"
+            (selectionChange)="selectActivite()"
+            placeholder="Choisir une date d'animation">
+            <div *ngFor="let activite of selectedAnimation?.listActivite">
+              <mat-option [value]="activite">{{
+                convertDate(activite.date)
+              }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="clearSelectionDate()">
+          Effacer la sélection
+        </button>
+        <div *ngIf="selectedActivite" class="animations-list">
+          <div class="animation">
+            <app-form-activite-conatiner
+              [isNew]="false"></app-form-activite-conatiner>
+          </div>
+        </div>
+      </div>
     </div>
   </mat-tab>
 </mat-tab-group>

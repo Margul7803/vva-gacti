@@ -1,37 +1,59 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Animations } from 'src/app/mock/animations';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { animations } from 'src/app/mock/animations';
 import { Activite } from 'src/app/models/activite';
+import { Animation } from 'src/app/models/animation';
+import {
+  selectAnimation,
+  selectAnimationAction,
+  selectAnimationList,
+} from 'src/app/state/animation-state';
 
 @Component({
   selector: 'app-page-espace-encadrant-animation',
   templateUrl: './page-espace-encadrant-animation.component.html',
   styleUrls: ['./page-espace-encadrant-animation.component.scss'],
 })
-export class PageEspaceEncadrantAnimationComponent {
-  @Output() 
-  newSelectedActivite = new EventEmitter<Activite>();
+export class PageEspaceEncadrantAnimationComponent
+  implements OnInit, OnDestroy
+{
+  @Output()
+  newSelectedAnimation = new EventEmitter<Activite>();
 
-  animations = Animations
-  selectAnimationFrom!: FormGroup;
+  selectedAnimation!: Animation | null;
 
-  constructor(private formBuilder: FormBuilder) {}
+  public animationList$: Observable<Animation[]> | null = null;
+  private destroyed$ = new Subject<boolean>();
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this.selectAnimationFrom = this.formBuilder.group(
-      {
-        selectAnimation: [null, Validators.required],
-      },
-      {
-        updateOn: 'submit',
-      }
+    this.animationList$ = this.store
+      .select(selectAnimationList)
+      .pipe(takeUntil(this.destroyed$));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+    this.store.dispatch(selectAnimationAction({ animation: null }));
+  }
+
+  selectAnimation(): void {
+    this.store.dispatch(
+      selectAnimationAction({ animation: this.selectedAnimation })
     );
   }
 
-  onSubmitForm(): void {
-    if (this.selectAnimationFrom.valid) {
-      console.log(this.selectAnimationFrom.get('selectAnimation')?.value);
-      this.newSelectedActivite.emit(this.selectAnimationFrom.get('selectAnimation')?.value);
-    }
+  clearSelection(): void {
+    this.selectedAnimation = null;
   }
 }

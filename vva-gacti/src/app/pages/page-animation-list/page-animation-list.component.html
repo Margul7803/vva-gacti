@@ -1,5 +1,10 @@
-<h1 class="title">Liste des animations disponibles</h1>
-<div *ngFor="let animation of animations" class="animations-list">
-  <div class="animation">
-  <app-card-animation [animationCard]="animation"></app-card-animation>
-</div></div>
+<div *ngIf="animationList$ | async as animations">
+  <h1 class="title">Liste des animations disponibles</h1>
+  <div *ngFor="let animation of animations" class="animations-list">
+    <div class="animation">
+      <app-card-animation
+        [animationCard]="animation"
+        [activitesCard]="animation.listActivite"></app-card-animation>
+    </div>
+  </div>
+</div>

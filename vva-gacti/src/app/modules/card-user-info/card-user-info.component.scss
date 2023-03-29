@@ -1,4 +1,4 @@
-.card-user-info{
+.card-user-info {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -6,12 +6,12 @@
   margin: 5%;
 }
 
-.column{
+.column {
   display: flex;
   flex-flow: column;
 }
 
-.nom-prenom{
+.nom-prenom {
   width: 100%;
   display: flex;
   flex-flow: column;
@@ -20,13 +20,13 @@
   font-weight: bold;
 }
 
-.header-card{
+.header-card {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   font-size: 20px;
   margin: 5% 5% 0% 5%;
 }
-span{
+span {
   padding: 1.2vw;
 }

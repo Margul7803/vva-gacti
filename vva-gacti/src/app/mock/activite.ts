@@ -1,5 +1,5 @@
 import { Activite, EtatActivite } from '../models/activite';
-import { animation } from './animations';
+import { animation1, animation2 } from './animations';
 
 export const codeEtatList: EtatActivite[] = [
   { code: '1', nom: 'ouverte' },
@@ -7,16 +7,16 @@ export const codeEtatList: EtatActivite[] = [
   { code: '3', nom: 'annulée' },
 ];
 
-const dateMock: Date = new Date('December 18, 1995 14:24:00');
+const dateMock: Date = new Date();
 
 export const activite: Activite = {
-  codeAnimation: animation,
+  codeAnimation: animation1.codeAnimation,
   codeEtat: codeEtatList[0],
-  date: dateMock,
-  dateAnnule: dateMock,
-  heureDebut: dateMock,
-  heureFin: dateMock,
-  heureRendezVous: dateMock,
+  date: '2022-12-11',
+  dateAnnule: '2023/01/11',
+  heureDebut: '11:12',
+  heureFin: '11:13',
+  heureRendezVous: '11:00',
   nomResponsable: 'Abou Jamra',
   prenomResponsable: 'Mario',
   prix: 12,
@@ -24,25 +24,25 @@ export const activite: Activite = {
 
 export const activites: Activite[] = [
   {
-    codeAnimation: animation,
+    codeAnimation: animation2.codeAnimation,
     codeEtat: codeEtatList[0],
-    date: dateMock,
-    dateAnnule: dateMock,
-    heureDebut: dateMock,
-    heureFin: dateMock,
-    heureRendezVous: dateMock,
+    date: '2022-12-11',
+    dateAnnule: '2023/01/11',
+    heureDebut: '11:12',
+    heureFin: '11:13',
+    heureRendezVous: '11:00',
     nomResponsable: 'Abou Jamra',
     prenomResponsable: 'Mario',
     prix: 12,
   },
   {
-    codeAnimation: animation,
+    codeAnimation: animation1.codeAnimation,
     codeEtat: codeEtatList[0],
-    date: dateMock,
-    dateAnnule: dateMock,
-    heureDebut: dateMock,
-    heureFin: dateMock,
-    heureRendezVous: dateMock,
+    date: '2022-12-11',
+    dateAnnule: '2023/01/11',
+    heureDebut: '11:12',
+    heureFin: '11:13',
+    heureRendezVous: '11:00',
     nomResponsable: 'Abou Jamra',
     prenomResponsable: 'Mario',
     prix: 12,

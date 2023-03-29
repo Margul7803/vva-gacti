@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-card-user-info',
   templateUrl: './card-user-info.component.html',
-  styleUrls: ['./card-user-info.component.scss']
+  styleUrls: ['./card-user-info.component.scss'],
 })
 export class CardUserInfoComponent {
   @Input()

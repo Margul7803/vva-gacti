@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { activites } from 'src/app/mock/activite';
-import { animation } from 'src/app/mock/animations';
+import { animation1 } from 'src/app/mock/animations';
+import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
 
 @Component({
@@ -10,25 +11,29 @@ import { Animation } from 'src/app/models/animation';
 })
 export class CardAnimationComponent {
   @Input()
-  animationCard = animation;
+  animationCard = animation1;
 
   @Input()
-  activitesCard = activites;
+  activitesCard!: Activite[] | null;
 
-  panelOpenState: boolean = false;
+  panelOpenState = false;
 
   togglePanel() {
     this.panelOpenState = !this.panelOpenState;
   }
 
-  FormatDateToShortDate(date: Date | null): string {
-    if (date !== null) {
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
-      return day + '/' + month + '/' + year;
-    } else {
-      return '';
+  convertDate(date: string | undefined): string {
+    if (date !== undefined) {
+      const dateParts = date.split('-');
+      const day = dateParts[2];
+      const month = dateParts[1];
+      const year = dateParts[0];
+      return `${day}/${month}/${year}`;
     }
+    return '';
+  }
+
+  VerifExistAct(activitesCard: Activite[] | null) {
+    return Array.isArray(activitesCard) && activitesCard.length > 0;
   }
 }

@@ -23,14 +23,17 @@ import { PageEspaceEncadrantAnimationComponent } from './pages/page-espace-encad
 import { MatTabsModule } from '@angular/material/tabs';
 import { StoreModule } from '@ngrx/store';
 import { PageEspaceEncadrantActiviteComponent } from './pages/page-espace-encadrant-activite/page-espace-encadrant-activite.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EffectsModule } from '@ngrx/effects';
-import { animationReducer } from './state';
+import { animationReducer } from './state/animation-state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PageAnimationListComponent } from './pages/page-animation-list/page-animation-list.component';
 import { PageUserInfoComponent } from './pages/page-user-info/page-user-info.component';
 import { CardUserInfoComponent } from './modules/card-user-info/card-user-info.component';
-
+import { AnimationEffects } from './state/animation-state/effect';
+import { AnimationFormContainerComponent } from './modules/form-animation/form-animation-container.component';
+import { ActiviteEffects } from './state/activite-state/effect';
+import { ActiviteFormContainerComponent } from './modules/form-activite/form-activite-container';
+import { activiteReducer } from './state/activite-state';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { CardUserInfoComponent } from './modules/card-user-info/card-user-info.c
     PageAnimationListComponent,
     PageUserInfoComponent,
     CardUserInfoComponent,
+    AnimationFormContainerComponent,
+    ActiviteFormContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,12 +67,11 @@ import { CardUserInfoComponent } from './modules/card-user-info/card-user-info.c
     MatMenuModule,
     MatIconModule,
     MatTabsModule,
-    MatDatepickerModule,
-    StoreModule.forRoot(
-      {'animation-state': animationReducer,}
-      ),
-
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      'animation-state': animationReducer,
+      'activite-state': activiteReducer,
+    }),
+    EffectsModule.forRoot([AnimationEffects, ActiviteEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
