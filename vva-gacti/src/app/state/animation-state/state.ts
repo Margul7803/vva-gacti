@@ -1,4 +1,4 @@
-import { Animation } from "../models/animation";
+import { Animation } from 'src/app/models/animation';
 
 export interface AnimationState {
   animationList: Animation[];

@@ -13,12 +13,12 @@
   gap: 10px;
 }
 
-.hour-range{
+.hour-range {
   display: flex;
   flex-flow: row;
 }
 
-.column{
+.column {
   width: 50%;
 }
 
@@ -28,7 +28,7 @@
     flex-flow: column;
   }
 
-  .column{
+  .column {
     width: 100%;
   }
 }

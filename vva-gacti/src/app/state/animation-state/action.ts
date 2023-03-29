@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Animation } from '../models/animation';
+import { Activite } from 'src/app/models/activite';
+import { Animation } from '../../models/animation';
 
 export const loadAnimationList = createAction('[ANIMATION STATE] load');
 
@@ -30,6 +31,36 @@ export const updateAnimationActionSuccess = createAction(
 
 export const updateAnimationActionError = createAction(
   '[ANIMATION STATE] Update Animation error',
+  props<{ error: Error }>()
+);
+
+export const updateAnimationActiviteAction = createAction(
+  '[ANIMATION STATE] Update Animation Activite',
+  props<{ activite: Activite }>()
+);
+
+export const updateAnimationActiviteSuccess = createAction(
+  '[ANIMATION STATE] Update Animation Activite success',
+  props<{ activite: Activite }>()
+);
+
+export const updateAnimationActiviteError = createAction(
+  '[ANIMATION STATE] Update Animation  Activite error',
+  props<{ error: Error }>()
+);
+
+export const createAnimationActivteAction = createAction(
+  '[ANIMATION STATE] Update Animation Activités',
+  props<{ activite: Activite }>()
+);
+
+export const createAnimationActivteSuccess = createAction(
+  '[ANIMATION STATE] Update Animation Activités Success',
+  props<{ activite: Activite }>()
+);
+
+export const createAnimationActivteError = createAction(
+  '[ANIMATION STATE] Update Animation Activités Error',
   props<{ error: Error }>()
 );
 

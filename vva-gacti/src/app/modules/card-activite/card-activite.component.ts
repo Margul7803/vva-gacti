@@ -10,7 +10,7 @@ export class CardActiviteComponent {
   @Input()
   activiteCard = activite;
 
-  panelOpenState: boolean = false;
+  panelOpenState = false;
 
   togglePanel() {
     this.panelOpenState = !this.panelOpenState;
@@ -21,19 +21,24 @@ export class CardActiviteComponent {
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
-      return day + '/' + month + '/' + year;
+      if (month < 10) {
+        return day + '/' + '0' + month + '/' + year;
+      } else {
+        return day + '/' + month + '/' + year;
+      }
     } else {
       return '';
     }
   }
 
-  FormatDateToTime(date: Date | null): string {
-    if (date !== null) {
-      const hour = date.getHours();
-      const minute = date.getMonth() + 1;
-      return hour + 'h' + minute;
-    } else {
-      return '';
+  convertDate(date: string | undefined): string {
+    if (date !== undefined) {
+      const dateParts = date.split('-');
+      const day = dateParts[2];
+      const month = dateParts[1];
+      const year = dateParts[0];
+      return `${day}/${month}/${year}`;
     }
+    return '';
   }
 }

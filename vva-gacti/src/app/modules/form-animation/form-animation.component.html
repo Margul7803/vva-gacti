@@ -28,7 +28,7 @@
           placeholder="Choisir un type d'animation">
           <mat-option
             *ngFor="let codeType of codeTypeList"
-            [value]="codeType.code"
+            [value]="codeType"
             >{{ codeType.nom }}</mat-option
           >
         </mat-select>
@@ -71,11 +71,17 @@
 
       <mat-form-field class="form-input">
         <mat-label for="dateValiditeInput">Date de validité</mat-label>
-        <input matInput type="date" id="dateValiditeInput" formControlName="dateValidite" />
-        <mat-error *ngIf="animationForm.get('dateValidite')?.hasError('required')">
+        <input
+          matInput
+          type="date"
+          id="dateValiditeInput"
+          formControlName="dateValidite" />
+        <mat-error
+          *ngIf="animationForm.get('dateValidite')?.hasError('required')">
           Le champ est <strong>requis</strong>
         </mat-error>
-        <mat-error *ngIf="animationForm.get('dateValidite')?.hasError('dateValid')">
+        <mat-error
+          *ngIf="animationForm.get('dateValidite')?.hasError('dateValid')">
           La date doit être <strong>supérieur</strong> à aujourd'hui.
         </mat-error>
       </mat-form-field>
@@ -131,12 +137,7 @@
     <button class="button-create" mat-button type="submit">
       {{ isNew ? 'Créer' : 'Modifier' }}
     </button>
-    <button
-      class="button-create"
-      mat-button
-      color="warn"
-      type="reset"
-      (click)="onDestroyForm()">
+    <button class="button-create" mat-button color="warn" type="reset">
       Annuler
     </button>
   </div>

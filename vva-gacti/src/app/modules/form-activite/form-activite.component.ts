@@ -1,22 +1,19 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { codeEtatList } from 'src/app/mock/activite';
-import { Animations, codeTypeList } from 'src/app/mock/animations';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
+import { convertDate } from 'src/app/services/global service';
+import { selectAnimationList } from 'src/app/state/animation-state';
 
 @Component({
   selector: 'app-form-activite',
   templateUrl: './form-activite.component.html',
   styleUrls: ['./form-activite.component.scss'],
 })
-export class FormActiviteComponent {
+export class FormActiviteComponent implements OnInit {
   @Input()
   isNew = false;
 
@@ -26,13 +23,13 @@ export class FormActiviteComponent {
 
   @Input()
   model: Activite | null = {
-    codeAnimation: null,
+    codeAnimation: '',
     codeEtat: null,
-    date: null,
-    heureDebut: null,
-    dateAnnule: null,
-    heureFin: null,
-    heureRendezVous: null,
+    date: '',
+    heureDebut: '',
+    dateAnnule: '',
+    heureFin: '',
+    heureRendezVous: '',
     nomResponsable: '',
     prenomResponsable: '',
     prix: null,
@@ -40,19 +37,22 @@ export class FormActiviteComponent {
 
   readonly codeEtats = Object.values(codeEtatList);
 
-  readonly animations = Object.values(Animations);
-
-  mind = '&&';
+  public animationList$: Observable<Animation[]> | null = null;
 
   activiteForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  private destroyed$ = new Subject<boolean>();
+
+  constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   ngOnInit() {
+    this.animationList$ = this.store
+      .select(selectAnimationList)
+      .pipe(takeUntil(this.destroyed$));
     this.activiteForm = this.formBuilder.group(
       {
         codeAnimation: [this.model?.codeAnimation, Validators.required],
-        codeEtat: [this.model?.codeEtat, Validators.required],
+        codeEtat: [this.model?.codeEtat?.code, Validators.required],
         date: [this.model?.date, Validators.required],
         heureRendezVous: [this.model?.heureRendezVous, Validators.required],
         dateAnnule: [this.model?.dateAnnule],
@@ -64,20 +64,22 @@ export class FormActiviteComponent {
       },
       {
         updateOn: 'submit',
-        validators: [this.timeRangeValidator1, this.timeRangeValidator2, this.DateActValidator],
+        validators: [
+          this.timeRangeValidator1,
+          this.timeRangeValidator2,
+          //this.DateActValidator,
+        ],
       }
     );
   }
 
   DateActValidator(activiteForm: FormGroup) {
-    const activiteSelected:Animation = activiteForm.get('codeAnimation')?.value
+    const activiteSelected: Animation =
+      activiteForm.get('codeAnimation')?.value;
     const end = activiteForm.get('date')?.value;
-    const day = activiteSelected?.dateValidite.getDate();
-    const month = activiteSelected?.dateValidite.getMonth() + 1;
-    const year = activiteSelected?.dateValidite.getFullYear();
-    const dateValidite = year?.toString() + '-' + month?.toString() + '-' + day?.toString()
+    const start = activiteSelected.dateValidite;
 
-    if (dateValidite <= end) {
+    if (start <= end) {
       activiteForm.controls['date'].setErrors({ dateValid: true });
       return { dateValid: true };
     }
@@ -106,11 +108,52 @@ export class FormActiviteComponent {
 
   onSubmitForm(): void {
     if (this.activiteForm.valid) {
+      this.activiteForm
+        .get('codeEtat')
+        ?.setValue(codeEtatList[this.activiteForm.get('codeEtat')?.value - 1]);
       this.newActivite.emit(this.activiteForm.value);
+      this.activiteForm.reset();
+      Object.keys(this.activiteForm.controls).forEach(key => {
+        const control = this.activiteForm.controls[key];
+        control.setErrors(null);
+      });
     }
   }
 
   onDestroyForm(): void {
     this.cancel.emit(true);
+  }
+
+  FormatDateToShortDate(date: Date | null | undefined): string {
+    if (date !== null && date !== undefined) {
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      if (month < 10) {
+        return year + '-' + '0' + month + '-' + day;
+      } else {
+        return year + '-' + month + '-' + day;
+      }
+    } else {
+      return '';
+    }
+  }
+
+  FormatDateToTime(date: Date | null | undefined): string {
+    if (date !== null && date !== undefined) {
+      const hour = date.getHours();
+      let hourstr = date.getHours().toString();
+      const minute = date.getMinutes();
+      let minutestr = date.getMinutes().toString();
+      if (hour < 10) {
+        hourstr = '0' + hour;
+      }
+      if (minute < 10) {
+        minutestr = '0' + minute;
+      }
+      return hourstr + ':' + minutestr;
+    } else {
+      return '';
+    }
   }
 }
