@@ -1,5 +1,5 @@
-export interface User {
-  user: string;
+export interface Compte {
+  username: string;
   password?: string;
   nom: string;
   prenom: string;
@@ -11,6 +11,23 @@ export interface User {
   dateNais: Date;
   mail: string;
   tel: string;
+}
+
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export interface ICompteLogged {
+  data: {
+    user: Compte;
+    token: IToken;
+  };
+}
+
+export interface IToken {
+  authorization: string;
+  expiresIn: string;
 }
 
 export enum Profile {

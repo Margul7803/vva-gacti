@@ -1,11 +1,11 @@
-import { Profile, User } from '../models/user';
+import { Profile, Compte } from '../models/compte';
 
 const dateMock: Date = new Date('December 17, 1995 03:24:00');
 
-export const user: User = {
+export const user: Compte = {
   nom: 'ABOU JAMRA',
   prenom: 'Mario',
-  user: 'mario.aboujamra',
+  username: 'mario.aboujamra',
   dateInscr: dateMock,
   dateDebutSej: dateMock,
   dateFinSej: dateMock,
