@@ -135,6 +135,25 @@ async function main() {
       },
     },
   });
+
+  const compt1 = await prisma.compte.upsert({
+    where: { username: "mario.aboujamra" },
+    update: {},
+    create: {
+      dateDebutSej:"2022-07-05T00:00:00.000Z",
+      dateFerm:"2022-07-05T00:00:00.000Z",
+      dateFinSej:"2022-07-05T00:00:00.000Z",
+      dateInscr:"2022-07-05T00:00:00.000Z",
+      dateNais:"2022-07-05T00:00:00.000Z",
+      mail:"mario.aboujamra@gmail.com",
+      nom:"Abou Jamra",
+      password:"$2a$12$tGFqOejeqfhbBo4dStfaueLfmpEYxuixxq6yh5GZXmmNQIv2bIY1i",
+      prenom:"Mario",
+      tel:"0664128413",
+      type:"ADMIN",
+      username:"mario.aboujamra",
+    }
+  })
 }
 
 main()

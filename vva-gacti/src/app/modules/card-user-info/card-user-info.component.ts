@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { Compte } from 'src/app/models/compte';
 
 @Component({
   selector: 'app-card-user-info',
@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class CardUserInfoComponent {
   @Input()
-  userCard!: User;
+  userCard!: Compte;
 
   FormatDateToShortDate(date: Date | null): string {
     if (date !== null) {

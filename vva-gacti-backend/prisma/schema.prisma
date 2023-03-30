@@ -34,18 +34,19 @@ model TypeAnim {
 }
 
 model Activite {
-  date              DateTime     @db.Date
-  Etat              EtatActivite @relation(fields: [codeEtat], references: [code])
+  date              DateTime      @db.Date
+  Etat              EtatActivite  @relation(fields: [codeEtat], references: [code])
   codeEtat          String
-  heureRendezVous   DateTime     @db.Time()
-  heureDebut        DateTime     @db.Time()
-  heureFin          DateTime     @db.Time()
+  heureRendezVous   DateTime      @db.Time()
+  heureDebut        DateTime      @db.Time()
+  heureFin          DateTime      @db.Time()
   prix              Float
   nomResponsable    String
   prenomResponsable String
-  dateAnnule        DateTime?    @db.Date
-  Animation         Animation    @relation(fields: [codeAnimation], references: [codeAnimation], onDelete: Cascade)
+  dateAnnule        DateTime?     @db.Date
+  Animation         Animation     @relation(fields: [codeAnimation], references: [codeAnimation], onDelete: Cascade)
   codeAnimation     String
+  Inscription       Inscription[]
 
   @@id([codeAnimation, date])
 }
@@ -54,4 +55,37 @@ model EtatActivite {
   code     String     @id @unique
   nom      String
   Activite Activite[]
+}
+
+model Inscription {
+  noInscrip     String   @id @unique
+  Compte        Compte   @relation(fields: [username], references: [username])
+  username      String
+  Activite      Activite @relation(fields: [codeAnimation, date], references: [codeAnimation, date])
+  dateInscrip   DateTime @db.Date
+  dateAnnule    DateTime @db.Date
+  codeAnimation String
+  date          DateTime @db.Date
+}
+
+model Compte {
+  username     String        @id @unique
+  password     String
+  nom          String
+  prenom       String
+  dateInscr    DateTime      @db.Date
+  dateFerm     DateTime      @db.Date
+  type         Profil
+  dateDebutSej DateTime      @db.Date
+  dateFinSej   DateTime      @db.Date
+  dateNais     DateTime      @db.Date
+  mail         String
+  tel          String
+  Inscription  Inscription[]
+}
+
+enum Profil {
+  ADMIN
+  ENCADRANT
+  VACANCIER
 }
