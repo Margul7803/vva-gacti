@@ -30,8 +30,8 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
     codeType: null,
     commentaire: '',
     description: '',
-    dateCreation: this.FormatDateToShortDate(new Date()),
-    dateValidite: '',
+    dateCreation: null,
+    dateValidite: null,
     difficulte: '',
     duree: null,
     limiteAge: null,
@@ -52,15 +52,19 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   ngOnInit() {
-    console.log(this.model?.listActivite);
     this.animationForm = this.formBuilder.group(
       {
         codeAnimation: [this.model?.codeAnimation, Validators.required],
         codeType: [this.model?.codeType, Validators.required],
         commentaire: [this.model?.commentaire, Validators.required],
         description: [this.model?.description, Validators.required],
-        dateCreation: [this.model?.dateCreation],
-        dateValidite: [this.model?.dateValidite, Validators.required],
+        dateCreation: this.model?.dateCreation,
+        dateValidite: [
+          this.model?.dateValidite
+            ? new Date(this.model.dateValidite).toISOString().substring(0, 10)
+            : '',
+          Validators.required,
+        ],
         difficulte: [this.model?.difficulte, Validators.required],
         duree: [this.model?.duree, Validators.required],
         limiteAge: [this.model?.limiteAge, Validators.required],
@@ -81,8 +85,8 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  FormatDateToShortDate(date: Date | undefined): string {
-    if (date !== undefined) {
+  FormatDateToShortDate(date: Date | undefined | null): string {
+    if (date !== undefined && date !== null) {
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
@@ -121,6 +125,14 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
       this.animationForm
         .get('listActivite')
         ?.setValue(this.model?.listActivite);
+      this.animationForm
+        .get('dateValidite')
+        ?.setValue(
+          this.animationForm.get('dateValidite')?.value + 'T00:00:00.000Z'
+        );
+      this.animationForm
+        .get('dateCreation')
+        ?.setValue(new Date().toISOString());
       this.newAnimation.emit(this.animationForm.value);
       this.animationForm.reset();
       Object.keys(this.animationForm.controls).forEach(key => {

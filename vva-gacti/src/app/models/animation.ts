@@ -9,8 +9,8 @@ export interface Animation {
   commentaire: string;
   limiteAge: number | null;
   difficulte: string;
-  dateCreation: string;
-  dateValidite: string;
+  dateCreation: Date | null;
+  dateValidite: Date | null;
   duree: number | null;
   tarif: number | null;
   listActivite: Activite[] | null;

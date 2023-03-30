@@ -34,6 +34,7 @@ import { AnimationFormContainerComponent } from './modules/form-animation/form-a
 import { ActiviteEffects } from './state/activite-state/effect';
 import { ActiviteFormContainerComponent } from './modules/form-activite/form-activite-container';
 import { activiteReducer } from './state/activite-state';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { activiteReducer } from './state/activite-state';
     MatMenuModule,
     MatIconModule,
     MatTabsModule,
+    HttpClientModule,
     StoreModule.forRoot({
       'animation-state': animationReducer,
       'activite-state': activiteReducer,

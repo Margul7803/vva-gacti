@@ -2,15 +2,15 @@ import { Animation } from './animation';
 
 export interface Activite {
   codeAnimation: string;
-  date: string;
+  date: Date | null;
   codeEtat: EtatActivite | null;
-  heureRendezVous: string;
-  heureDebut: string;
-  heureFin: string;
+  heureRendezVous: Date | null;
+  heureDebut: Date | null;
+  heureFin: Date | null;
   prix: number | null;
   nomResponsable: string;
   prenomResponsable: string;
-  dateAnnule?: string | null;
+  dateAnnule?: Date | null;
 }
 
 export interface EtatActivite {

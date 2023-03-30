@@ -27,7 +27,6 @@ export class AnimationFormContainerComponent implements OnInit, OnDestroy {
   isNew!: boolean;
 
   ngOnInit(): void {
-    console.log('aze');
     this.animation$ = this.store
       .select(selectAnimation)
       .pipe(takeUntil(this.destroyed$));
