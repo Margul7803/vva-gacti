@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { activites } from 'src/app/mock/activite';
 import { animation1 } from 'src/app/mock/animations';
 import { Activite } from 'src/app/models/activite';

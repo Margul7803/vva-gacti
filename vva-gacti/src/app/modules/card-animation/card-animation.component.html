@@ -9,7 +9,9 @@
           >
           <mat-card-subtitle
             >Jusqu'au
-            {{ convertDate(animationCard.dateValidite) }}</mat-card-subtitle
+            {{
+              animationCard.dateValidite | date : 'dd/MM/yyyy'
+            }}</mat-card-subtitle
           >
         </div>
         <div class="subtitle-right">

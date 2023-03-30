@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Animation {
+  codeAnimation String     @id @unique
+  TypeAnim      TypeAnim   @relation(fields: [codeType], references: [code])
+  codeType      String
+  nom           String
+  nbPlaceDispo  Int
+  description   String
+  commentaire   String
+  limiteAge     Int
+  difficulte    String
+  dateCreation  DateTime   @db.Date
+  dateValidite  DateTime   @db.Date
+  duree         Int
+  tarif         Float
+  listActivite  Activite[]
+}
+
+model TypeAnim {
+  code      String      @id @unique
+  nom       String
+  Animation Animation[]
+}
+
+model Activite {
+  date              DateTime     @db.Date
+  Etat              EtatActivite @relation(fields: [codeEtat], references: [code])
+  codeEtat          String
+  heureRendezVous   DateTime     @db.Time()
+  heureDebut        DateTime     @db.Time()
+  heureFin          DateTime     @db.Time()
+  prix              Float
+  nomResponsable    String
+  prenomResponsable String
+  dateAnnule        DateTime?    @db.Date
+  Animation         Animation    @relation(fields: [codeAnimation], references: [codeAnimation], onDelete: Cascade)
+  codeAnimation     String
+
+  @@id([codeAnimation, date])
+}
+
+model EtatActivite {
+  code     String     @id @unique
+  nom      String
+  Activite Activite[]
+}
