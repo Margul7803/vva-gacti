@@ -16,25 +16,25 @@ export class AuthService {
   ) {}
   async login(loginUserDto: LoginUserDto): Promise<any> {
     // find user in db
-    const user = await this.compteService.isPasswordMatch(
+    const compte = await this.compteService.isPasswordMatch(
       loginUserDto.username,
       loginUserDto.password,
     );
 
     // generate and sign token
-    const token = this._createToken(user);
+    const token = this._createToken(compte);
 
     return {
       data: {
-        user,
+        compte,
         token,
       },
     };
   }
 
   private _createToken({ username, type }): IToken {
-    const user: JwtPayload = { username, type };
-    const authorization = this.jwtService.sign(user);
+    const compte: JwtPayload = { username, type };
+    const authorization = this.jwtService.sign(compte);
     return {
       expiresIn: this.configService.get<string>('EXPIRES_IN'),
       authorization,
@@ -42,11 +42,11 @@ export class AuthService {
   }
 
   async validateUser(payload: JwtPayload): Promise<any> {
-    const user = await this.compteService.findByPayload(payload);
-    if (!user) {
+    const compte = await this.compteService.findByPayload(payload);
+    if (!compte) {
       throw new HttpException('INVALID_TOKEN', HttpStatus.UNAUTHORIZED);
     }
-    return user;
+    return compte;
   }
 }
 

@@ -35,7 +35,7 @@ export class ActiviteService {
       {
         codeAnimationid: activiteToUpdate.codeAnimation,
         date: activiteToUpdate.date,
-        codeEtatid: activiteToUpdate.codeEtat?.code,
+        codeEtatid: activiteToUpdate.Etat,
         heureRendezVous: activiteToUpdate.heureRendezVous,
         heureDebut: activiteToUpdate.heureDebut,
         heureFin: activiteToUpdate.heureFin,
@@ -51,7 +51,7 @@ export class ActiviteService {
     return this.http.post<Activite>(`${this.endpoint()}`, {
       codeAnimationid: activiteCreated.codeAnimation,
       date: activiteCreated.date,
-      codeEtatid: activiteCreated.codeEtat?.code,
+      codeEtatid: activiteCreated.Etat,
       heureRendezVous: activiteCreated.heureRendezVous,
       heureDebut: activiteCreated.heureDebut,
       heureFin: activiteCreated.heureFin,

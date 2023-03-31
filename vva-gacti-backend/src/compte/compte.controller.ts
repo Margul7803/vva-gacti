@@ -26,7 +26,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CompteEntity } from './entities/compte.entity';
-import { Roles } from 'src/role/roles.decorator';
+import { Profils } from 'src/role/roles.decorator';
 import { Profil } from '@prisma/client';
 import { RolesGuard } from 'src/role/roles.guard';
 
@@ -34,7 +34,7 @@ import { RolesGuard } from 'src/role/roles.guard';
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiSecurity('access-key')
 @UseInterceptors(ClassSerializerInterceptor)
-@Roles(Profil.ADMIN)
+@Profils(Profil.ADMIN)
 @ApiTags('compte')
 @Controller('compte')
 export class CompteController {
@@ -43,18 +43,18 @@ export class CompteController {
   @Post()
   @ApiCreatedResponse({
     type: CompteEntity,
-    description: 'Create User',
+    description: 'Create Compte',
   })
   @ApiOperation({
-    summary: 'Create user',
+    summary: 'Create Compte',
   })
   @ApiResponse({
     status: 403,
-    description: 'Unauthorized user action',
+    description: 'Unauthorized compte action',
   })
   @ApiResponse({
     status: 400,
-    description: 'Invalid user value',
+    description: 'Invalid compte value',
   })
   create(@Body() createCompteDto: CreateCompteDto) {
     return this.compteService.create(createCompteDto);
@@ -62,68 +62,68 @@ export class CompteController {
 
   @Get()
   @ApiOperation({
-    summary: 'Get user list',
+    summary: 'Get compte list',
   })
   @ApiResponse({
     status: 403,
-    description: 'Unauthorized user action',
+    description: 'Unauthorized compte action',
   })
   @ApiOkResponse({
     type: CompteEntity,
     isArray: true,
-    description: 'Get user list',
+    description: 'Get compte list',
   })
   findAll() {
     return this.compteService.findAll();
   }
 
-  @Get(':email')
-  @ApiOperation({ summary: "Get a single user identified by it's email" })
+  @Get(':username')
+  @ApiOperation({ summary: "Get a single compte identified by it's username" })
   @ApiParam({
     name: 'email',
     type: 'string',
-    description: 'Enter a user email',
+    description: 'Enter a compte username',
     required: true,
   })
   @ApiResponse({
     status: 403,
-    description: 'Unauthorized user action',
+    description: 'Unauthorized compte action',
   })
   @ApiResponse({
     status: 404,
-    description: 'User not found',
+    description: 'Compte not found',
     isArray: true,
   })
-  findOneByEmail(@Param('email') email: string) {
+  findOneByEmail(@Param('username') email: string) {
     return this.compteService.findOneByEmail(email);
   }
 
-  @Patch(':email')
+  @Patch(':username')
   @HttpCode(204)
   @ApiOperation({
-    summary: "Update a single user identified by it's email",
+    summary: "Update a single compte identified by it's email",
   })
   @ApiParam({
     name: 'email',
     type: 'string',
-    description: 'Enter a user email',
+    description: 'Enter a compte email',
     required: true,
   })
   @ApiResponse({
     status: 200,
-    description: 'User value updated',
+    description: 'Compte value updated',
   })
   @ApiResponse({
     status: 400,
-    description: 'Invalid user value',
+    description: 'Invalid compte value',
   })
   @ApiResponse({
     status: 403,
-    description: 'Unauthorized user action',
+    description: 'Unauthorized compte action',
   })
   @ApiResponse({
     status: 404,
-    description: 'User not found',
+    description: 'Compte not found',
   })
   @ApiOkResponse({
     type: CompteEntity,
@@ -131,10 +131,10 @@ export class CompteController {
     description: 'Update ticket',
   })
   update(
-    @Param('email') email: string,
+    @Param('username') username: string,
     @Body() updateUserDto: UpdateCompteDto,
   ) {
-    return this.compteService.update(email, updateUserDto);
+    return this.compteService.update(username, updateUserDto);
   }
 
   @Delete(':email')

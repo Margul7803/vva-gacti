@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, mergeMap, tap } from 'rxjs';
-import { LoggedCompteService } from 'src/app/services/logged-user.service';
+import { LoggedCompteService } from 'src/app/services/logged-compte.service';
 import * as CompteAction from './action';
 
 @Injectable()
-export class LoggedUserEffects {
+export class LoggedCompteEffects {
   constructor(
     private readonly actions$: Actions,
     private loggedCompteService: LoggedCompteService,
@@ -32,7 +32,7 @@ export class LoggedUserEffects {
       return this.actions$.pipe(
         ofType(CompteAction.loginCompteSuccess),
         tap(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/accueil']);
         })
       );
     },

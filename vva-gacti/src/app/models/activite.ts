@@ -1,9 +1,7 @@
-import { Animation } from './animation';
-
 export interface Activite {
   codeAnimation: string;
   date: Date | null;
-  codeEtat: EtatActivite | null;
+  Etat: EtatActivite | null;
   heureRendezVous: Date | null;
   heureDebut: Date | null;
   heureFin: Date | null;

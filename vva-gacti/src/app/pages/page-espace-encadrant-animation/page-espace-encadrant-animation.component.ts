@@ -5,10 +5,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { animations } from 'src/app/mock/animations';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
 import {
@@ -30,6 +28,8 @@ export class PageEspaceEncadrantAnimationComponent
 
   selectedAnimation!: Animation | null;
 
+  public selectedAnimation$!: Observable<Animation | null>;
+
   public animationList$: Observable<Animation[]> | null = null;
   private destroyed$ = new Subject<boolean>();
 
@@ -38,6 +38,9 @@ export class PageEspaceEncadrantAnimationComponent
   ngOnInit() {
     this.animationList$ = this.store
       .select(selectAnimationList)
+      .pipe(takeUntil(this.destroyed$));
+    this.selectedAnimation$ = this.store
+      .select(selectAnimation)
       .pipe(takeUntil(this.destroyed$));
   }
 
@@ -55,5 +58,6 @@ export class PageEspaceEncadrantAnimationComponent
 
   clearSelection(): void {
     this.selectedAnimation = null;
+    this.store.dispatch(selectAnimationAction({ animation: null }));
   }
 }

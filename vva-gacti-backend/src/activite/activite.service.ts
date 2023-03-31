@@ -21,12 +21,40 @@ export class ActiviteService {
         codeEtat: createActiviteDto.codeEtatid,
         dateAnnule: createActiviteDto.dateAnnule,
       },
-      include: { Etat: true, Animation: true },
+      select: {
+        codeAnimation: true,
+        codeEtat: false,
+        date: true,
+        dateAnnule: true,
+        heureDebut: true,
+        heureFin: true,
+        heureRendezVous: true,
+        nomResponsable: true,
+        prenomResponsable: true,
+        prix: true,
+        Etat: true,
+        Animation: true,
+      },
     });
   }
 
   findAll() {
-    return this.prisma.activite.findMany();
+    return this.prisma.activite.findMany({
+      select: {
+        codeAnimation: true,
+        codeEtat: false,
+        date: true,
+        dateAnnule: true,
+        heureDebut: true,
+        heureFin: true,
+        heureRendezVous: true,
+        nomResponsable: true,
+        prenomResponsable: true,
+        prix: true,
+        Etat: true,
+        Animation: true,
+      },
+    });
   }
 
   findOne(codeAnimation: string, dateActivite: string) {
@@ -36,6 +64,20 @@ export class ActiviteService {
           codeAnimation: codeAnimation,
           date: dateActivite,
         },
+      },
+      select: {
+        codeAnimation: true,
+        codeEtat: false,
+        date: true,
+        dateAnnule: true,
+        heureDebut: true,
+        heureFin: true,
+        heureRendezVous: true,
+        nomResponsable: true,
+        prenomResponsable: true,
+        prix: true,
+        Etat: true,
+        Animation: true,
       },
     });
   }
@@ -64,7 +106,20 @@ export class ActiviteService {
         codeEtat: updateActiviteDto.codeEtatid,
         dateAnnule: updateActiviteDto.dateAnnule,
       },
-      include: { Etat: true, Animation: true },
+      select: {
+        codeAnimation: true,
+        codeEtat: false,
+        date: true,
+        dateAnnule: true,
+        heureDebut: true,
+        heureFin: true,
+        heureRendezVous: true,
+        nomResponsable: true,
+        prenomResponsable: true,
+        prix: true,
+        Etat: true,
+        Animation: true,
+      },
     });
   }
 

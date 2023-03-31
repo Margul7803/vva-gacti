@@ -23,19 +23,98 @@ export class AnimationService {
         nbPlaceDispo: createAnimationDto.nbPlaceDispo,
         tarif: createAnimationDto.tarif,
       },
+      select: {
+        codeAnimation: true,
+        nom: true,
+        codeType: false,
+        commentaire: true,
+        description: true,
+        dateValidite: true,
+        dateCreation: true,
+        difficulte: true,
+        duree: true,
+        limiteAge: true,
+        nbPlaceDispo: true,
+        tarif: true,
+        listActivite: {
+          select: {
+            codeAnimation: true,
+            codeEtat: false,
+            date: true,
+            dateAnnule: true,
+            heureDebut: true,
+            heureFin: true,
+            heureRendezVous: true,
+            nomResponsable: true,
+            prenomResponsable: true,
+            prix: true,
+            Etat: true,
+            Animation: true,
+          },
+        },
+        TypeAnim: true,
+      },
     });
   }
 
   findAll() {
     return this.prisma.animation.findMany({
-      include: { listActivite: true, TypeAnim: true },
+      select: {
+        codeAnimation: true,
+        nom: true,
+        codeType: false,
+        commentaire: true,
+        description: true,
+        dateValidite: true,
+        dateCreation: true,
+        difficulte: true,
+        duree: true,
+        limiteAge: true,
+        nbPlaceDispo: true,
+        tarif: true,
+        listActivite: {
+          select: {
+            codeAnimation: true,
+            codeEtat: false,
+            date: true,
+            dateAnnule: true,
+            heureDebut: true,
+            heureFin: true,
+            heureRendezVous: true,
+            nomResponsable: true,
+            prenomResponsable: true,
+            prix: true,
+            Etat: true,
+            Animation: true,
+          },
+        },
+        TypeAnim: true,
+      },
     });
   }
 
   findOne(codeAnimation: string) {
     return this.prisma.animation.findUnique({
       where: { codeAnimation: codeAnimation },
-      include: { listActivite: true, TypeAnim: true },
+      include: {
+        listActivite: {
+          select: {
+            codeAnimation: true,
+            codeEtat: false,
+            date: true,
+            dateAnnule: true,
+            heureDebut: true,
+            heureFin: true,
+            heureRendezVous: true,
+            nomResponsable: true,
+            prenomResponsable: true,
+            prix: true,
+            Etat: true,
+            Animation: true,
+          },
+        },
+        TypeAnim: true,
+      },
     });
   }
 
@@ -55,6 +134,37 @@ export class AnimationService {
         limiteAge: updateAnimationDto.limiteAge,
         nbPlaceDispo: updateAnimationDto.nbPlaceDispo,
         tarif: updateAnimationDto.tarif,
+      },
+      select: {
+        codeAnimation: true,
+        nom: true,
+        codeType: false,
+        commentaire: true,
+        description: true,
+        dateValidite: true,
+        dateCreation: true,
+        difficulte: true,
+        duree: true,
+        limiteAge: true,
+        nbPlaceDispo: true,
+        tarif: true,
+        listActivite: {
+          select: {
+            codeAnimation: true,
+            codeEtat: false,
+            date: true,
+            dateAnnule: true,
+            heureDebut: true,
+            heureFin: true,
+            heureRendezVous: true,
+            nomResponsable: true,
+            prenomResponsable: true,
+            prix: true,
+            Etat: true,
+            Animation: true,
+          },
+        },
+        TypeAnim: true,
       },
     });
   }

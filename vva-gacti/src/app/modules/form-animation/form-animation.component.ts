@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { codeTypeList } from 'src/app/mock/animations';
 import { Animation } from 'src/app/models/animation';
+import { selectAnimationAction } from 'src/app/state/animation-state';
 
 @Component({
   selector: 'app-form-animation',
@@ -27,7 +28,7 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
   @Input()
   model: Animation | null = {
     codeAnimation: '',
-    codeType: null,
+    TypeAnim: null,
     commentaire: '',
     description: '',
     dateCreation: null,
@@ -55,7 +56,7 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
     this.animationForm = this.formBuilder.group(
       {
         codeAnimation: [this.model?.codeAnimation, Validators.required],
-        codeType: [this.model?.codeType, Validators.required],
+        TypeAnim: [this.model?.TypeAnim?.code, Validators.required],
         commentaire: [this.model?.commentaire, Validators.required],
         description: [this.model?.description, Validators.required],
         dateCreation: this.model?.dateCreation,
@@ -134,11 +135,7 @@ export class FormAnimationComponent implements OnInit, OnDestroy {
         .get('dateCreation')
         ?.setValue(new Date().toISOString());
       this.newAnimation.emit(this.animationForm.value);
-      this.animationForm.reset();
-      Object.keys(this.animationForm.controls).forEach(key => {
-        const control = this.animationForm.controls[key];
-        control.setErrors(null);
-      });
+      this.store.dispatch(selectAnimationAction({ animation: null }));
     }
   }
 }

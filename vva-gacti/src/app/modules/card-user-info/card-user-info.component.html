@@ -13,15 +13,15 @@
       <div class="column">
         <span>
           Date d'inscription:
-          {{ FormatDateToShortDate(userCard.dateInscr) }}</span
+          {{ userCard.dateInscr | date : 'dd/MM/yyyy' }}</span
         >
         <span>
           Date de fin du compte:
-          {{ FormatDateToShortDate(userCard.dateFerm) }}</span
+          {{ userCard.dateFerm | date : 'dd/MM/yyyy' }}</span
         >
         <span>
-          Date de sejour: {{ FormatDateToShortDate(userCard.dateDebutSej) }} au
-          {{ FormatDateToShortDate(userCard.dateFinSej) }}</span
+          Date de sejour: {{ userCard.dateDebutSej | date : 'dd/MM/yyyy' }} au
+          {{ userCard.dateFinSej | date : 'dd/MM/yyyy' }}</span
         >
       </div>
       <div class="column">

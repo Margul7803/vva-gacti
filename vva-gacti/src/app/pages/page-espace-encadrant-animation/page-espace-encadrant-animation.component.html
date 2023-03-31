@@ -24,7 +24,7 @@
       <button mat-button (click)="clearSelection()">
         Effacer la sélection
       </button>
-      <div *ngIf="selectedAnimation" class="animations-list">
+      <div *ngIf="selectedAnimation$ | async" class="animations-list">
         <div class="animation">
           <app-form-animation-conatiner
             [isNew]="false"></app-form-animation-conatiner>

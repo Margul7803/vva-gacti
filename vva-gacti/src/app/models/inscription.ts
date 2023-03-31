@@ -1,6 +1,5 @@
-import { Activite } from "./activite";
-import { Compte } from "./compte";
-
+import { Activite } from './activite';
+import { Compte } from './compte';
 
 export interface Inscription {
   noInscrip: string;

@@ -1,26 +1,26 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { LoggedCompteState } from './state';
 
-export const selectLoggedUserState = createFeatureSelector<LoggedCompteState>(
+export const selectLoggedCompteState = createFeatureSelector<LoggedCompteState>(
   'logged-compte-state'
 );
 
-export const selectUserToken = createSelector(
-  selectLoggedUserState,
+export const selectCompteToken = createSelector(
+  selectLoggedCompteState,
   state => state.token ?? null
 );
 
-export const selectLoggedUserRole = createSelector(
-  selectLoggedUserState,
+export const selectLoggedCompteProfil = createSelector(
+  selectLoggedCompteState,
   state => state.compte?.type ?? null
 );
 
-export const selectLoggedUser = createSelector(
-  selectLoggedUserState,
+export const selectLoggedCompte = createSelector(
+  selectLoggedCompteState,
   state => state.compte ?? null
 );
 
-export const selectUserLoginError = createSelector(
-  selectLoggedUserState,
+export const selectCompteLoginError = createSelector(
+  selectLoggedCompteState,
   state => state?.errors ?? null
 );

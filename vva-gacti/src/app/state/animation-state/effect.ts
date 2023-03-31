@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
 import { AnimationService } from 'src/app/services/animation.service';
 import * as animationAction from './action';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class AnimationEffects {
   constructor(
     private readonly actions$: Actions,
-    private animationService: AnimationService
+    private animationService: AnimationService,
+    private _snackBar: MatSnackBar
   ) {}
+  durationInSeconds = 4;
+
   loadAnimationList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(animationAction.loadAnimationList),
@@ -48,6 +52,12 @@ export class AnimationEffects {
           map((result: Animation) =>
             animationAction.createAnimationActionSuccess({ animation: result })
           ),
+          tap(() =>
+            this._snackBar.open('Animation créée', 'OK', {
+              duration: this.durationInSeconds * 1000,
+              panelClass: ['info-snackbar'],
+            })
+          ),
           catchError(async error =>
             animationAction.createAnimationActionError(error)
           )
@@ -62,6 +72,12 @@ export class AnimationEffects {
         this.animationService.updateAnimation(updatedAnimation.animation).pipe(
           map((result: Animation) =>
             animationAction.updateAnimationActionSuccess({ animation: result })
+          ),
+          tap(() =>
+            this._snackBar.open('Animation modifiée', 'OK', {
+              duration: this.durationInSeconds * 1000,
+              panelClass: ['info-snackbar'],
+            })
           ),
           catchError(async error =>
             animationAction.updateAnimationActionError(error)
@@ -83,6 +99,12 @@ export class AnimationEffects {
                 activite: result,
               })
             ),
+            tap(() =>
+              this._snackBar.open('Activité créée', 'OK', {
+                duration: this.durationInSeconds * 1000,
+                panelClass: ['info-snackbar'],
+              })
+            ),
             catchError(async error =>
               animationAction.createAnimationActivteError(error)
             )
@@ -101,6 +123,12 @@ export class AnimationEffects {
             map((result: Activite) =>
               animationAction.updateAnimationActiviteSuccess({
                 activite: result,
+              })
+            ),
+            tap(() =>
+              this._snackBar.open('Activité modifiée', 'OK', {
+                duration: this.durationInSeconds * 1000,
+                panelClass: ['info-snackbar'],
               })
             ),
             catchError(async error =>
