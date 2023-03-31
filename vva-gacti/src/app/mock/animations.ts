@@ -11,7 +11,7 @@ export const codeTypeList: TypeAnim[] = [
 
 export const animation1: Animation = {
   codeAnimation: 'Anim1',
-  codeType: codeTypeList[1],
+  TypeAnim: codeTypeList[1],
   commentaire: 'très bonne anim',
   dateCreation: new Date(),
   dateValidite: new Date(),
@@ -27,7 +27,7 @@ export const animation1: Animation = {
 
 export const animation2: Animation = {
   codeAnimation: 'Anim2',
-  codeType: codeTypeList[1],
+  TypeAnim: codeTypeList[1],
   commentaire: 'très bonne anim',
   dateCreation: new Date(),
   dateValidite: new Date(),
@@ -44,7 +44,7 @@ export const animation2: Animation = {
 export const animations: Animation[] = [
   {
     codeAnimation: 'Anim1',
-    codeType: codeTypeList[1],
+    TypeAnim: codeTypeList[1],
     commentaire: 'très bonne anim',
     dateCreation: new Date(),
     dateValidite: new Date(),
@@ -59,7 +59,7 @@ export const animations: Animation[] = [
   },
   {
     codeAnimation: 'Anim2',
-    codeType: codeTypeList[0],
+    TypeAnim: codeTypeList[0],
     commentaire: 'très nul anim',
     dateCreation: new Date(),
     dateValidite: new Date(),
@@ -73,7 +73,7 @@ export const animations: Animation[] = [
     listActivite: [
       {
         codeAnimation: 'Anim2',
-        codeEtat: { code: '1', nom: 'ouverte' },
+        Etat: { code: '1', nom: 'ouverte' },
         date: new Date(),
         dateAnnule: new Date(),
         heureDebut: new Date(),
@@ -85,7 +85,7 @@ export const animations: Animation[] = [
       },
       {
         codeAnimation: 'Anim2',
-        codeEtat: { code: '1', nom: 'ouverte' },
+        Etat: { code: '1', nom: 'ouverte' },
         date: new Date(),
         dateAnnule: new Date(),
         heureDebut: new Date(),

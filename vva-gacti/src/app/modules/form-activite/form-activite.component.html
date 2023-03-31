@@ -74,10 +74,10 @@
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label for="codeEtatInput">Etat</mat-label>
+        <mat-label for="EtatInput">Etat</mat-label>
         <mat-select
-          id="codeEtatSelect"
-          formControlName="codeEtat"
+          id="EtatSelect"
+          formControlName="Etat"
           placeholder="Choisir l'état">
           <mat-option *ngFor="let etat of codeEtats" [value]="etat.code">{{
             etat.nom

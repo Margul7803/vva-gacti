@@ -2,7 +2,7 @@ import { Activite } from './activite';
 
 export interface Animation {
   codeAnimation: string;
-  codeType: TypeAnim | null;
+  TypeAnim: TypeAnim | null;
   nom: string;
   nbPlaceDispo: number | null;
   description: string;

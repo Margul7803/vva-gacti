@@ -5,7 +5,7 @@ export interface Compte {
   prenom: string;
   dateInscr: Date;
   dateFerm: Date;
-  type: Profile;
+  type: Profil;
   dateDebutSej: Date;
   dateFinSej: Date;
   dateNais: Date;
@@ -14,13 +14,13 @@ export interface Compte {
 }
 
 export interface Login {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface ICompteLogged {
   data: {
-    user: Compte;
+    compte: Compte;
     token: IToken;
   };
 }
@@ -30,7 +30,7 @@ export interface IToken {
   expiresIn: string;
 }
 
-export enum Profile {
+export enum Profil {
   ADMIN = 'Admin',
   ENCADRANT = 'Encadrant',
   VACANCIER = 'Vacancier',

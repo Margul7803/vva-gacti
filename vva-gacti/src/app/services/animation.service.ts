@@ -27,9 +27,20 @@ export class AnimationService {
   }
 
   updateAnimation(animationToUpdate: Animation): Observable<Animation> {
+    console.log(animationToUpdate)
     return this.http.patch<Animation>(
       `${this.endpoint()}/${animationToUpdate.codeAnimation}`,
-      animationToUpdate
+      {codeAnimation: animationToUpdate.codeAnimation,
+        nom: animationToUpdate.nom,
+        codeTypeid: animationToUpdate.TypeAnim,
+        commentaire: animationToUpdate.commentaire,
+        description: animationToUpdate.description,
+        dateValidite: animationToUpdate.dateValidite,
+        difficulte: animationToUpdate.difficulte,
+        duree: animationToUpdate.duree,
+        limiteAge: animationToUpdate.limiteAge,
+        nbPlaceDispo: animationToUpdate.nbPlaceDispo,
+        tarif: animationToUpdate.tarif,}
     );
   }
 
@@ -37,7 +48,7 @@ export class AnimationService {
     return this.http.post<Activite>(`${this.config.api}/activite`, {
       codeAnimationid: animationToUpdate.codeAnimation,
       date: animationToUpdate.date,
-      codeEtatid: animationToUpdate.codeEtat?.code,
+      codeEtatid: animationToUpdate.Etat,
       heureRendezVous: animationToUpdate.heureRendezVous,
       heureDebut: animationToUpdate.heureDebut,
       heureFin: animationToUpdate.heureFin,
@@ -54,7 +65,7 @@ export class AnimationService {
       {
         codeAnimationid: animationToUpdate.codeAnimation,
         date: animationToUpdate.date,
-        codeEtatid: animationToUpdate.codeEtat?.code,
+        codeEtatid: animationToUpdate.Etat,
         heureRendezVous: animationToUpdate.heureRendezVous,
         heureDebut: animationToUpdate.heureDebut,
         heureFin: animationToUpdate.heureFin,
@@ -70,7 +81,7 @@ export class AnimationService {
     return this.http.post<Animation>(`${this.endpoint()}`, {
       codeAnimation: animationCreated.codeAnimation,
       nom: animationCreated.nom,
-      codeTypeid: animationCreated.codeType?.code,
+      codeTypeid: animationCreated.TypeAnim,
       commentaire: animationCreated.commentaire,
       description: animationCreated.description,
       dateValidite: animationCreated.dateValidite,

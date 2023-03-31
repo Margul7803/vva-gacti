@@ -86,7 +86,9 @@ export const animationReducer = createReducer(
     if (state.animationList !== null) {
       const animationToUpdate = state.animationList[animationIndex];
       const activiteIndex = animationToUpdate.listActivite?.findIndex(
-        activite => activite.codeAnimation === props.activite.codeAnimation
+        activite =>
+          activite.codeAnimation === props.activite.codeAnimation &&
+          activite.date === props.activite.date
       );
       if (
         animationToUpdate.listActivite !== null &&

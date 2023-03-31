@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CONFIG, IConfig } from '../config/config';
-import { Login, IUserLogged } from '../models/compte';
+import { Login, ICompteLogged } from '../models/compte';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,9 @@ export class LoggedCompteService {
     @Inject(CONFIG) private config: IConfig
   ) {}
 
-  loginCompteService(compteToConnect: Login): Observable<IUserLogged> {
-    return this.http.post<IUserLogged>(`${this.endpoint()}`, {
-      email: compteToConnect.email,
+  loginCompteService(compteToConnect: Login): Observable<ICompteLogged> {
+    return this.http.post<ICompteLogged>(`${this.endpoint()}`, {
+      username: compteToConnect.username,
       password: compteToConnect.password,
     });
   }

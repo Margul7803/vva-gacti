@@ -11,7 +11,7 @@
           <mat-label for="codeTypeInput">Code</mat-label>
           <mat-select
             [(ngModel)]="selectedAnimation"
-            (opened)="clearSelectionCode()"
+            (opened)="clearSelection()"
             (selectionChange)="selectAnimation()"
             placeholder="Choisir un code d'animation">
             <mat-option
@@ -35,10 +35,10 @@
             </div>
           </mat-select>
         </mat-form-field>
-        <button mat-button (click)="clearSelectionDate()">
+        <button mat-button (click)="clearSelection()">
           Effacer la sélection
         </button>
-        <div *ngIf="selectedActivite" class="animations-list">
+        <div *ngIf="selectedActivite$ | async" class="animations-list">
           <div class="animation">
             <app-form-activite-conatiner
               [isNew]="false"></app-form-activite-conatiner>

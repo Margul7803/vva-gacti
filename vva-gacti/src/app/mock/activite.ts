@@ -11,7 +11,7 @@ const dateMock: Date = new Date();
 
 export const activite: Activite = {
   codeAnimation: animation1.codeAnimation,
-  codeEtat: codeEtatList[0],
+  Etat: codeEtatList[0],
   date: new Date(),
   dateAnnule: new Date(),
   heureDebut: new Date(),
@@ -25,7 +25,7 @@ export const activite: Activite = {
 export const activites: Activite[] = [
   {
     codeAnimation: animation2.codeAnimation,
-    codeEtat: codeEtatList[0],
+    Etat: codeEtatList[0],
     date: new Date(),
     dateAnnule: new Date(),
     heureDebut: new Date(),
@@ -37,7 +37,7 @@ export const activites: Activite[] = [
   },
   {
     codeAnimation: animation1.codeAnimation,
-    codeEtat: codeEtatList[0],
+    Etat: codeEtatList[0],
     date: new Date(),
     dateAnnule: new Date(),
     heureDebut: new Date(),

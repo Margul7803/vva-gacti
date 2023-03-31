@@ -35,6 +35,15 @@ import { ActiviteEffects } from './state/activite-state/effect';
 import { ActiviteFormContainerComponent } from './modules/form-activite/form-activite-container';
 import { activiteReducer } from './state/activite-state';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginFormComponent } from './modules/login-form/login-form.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
+import {
+  LoggedCompteEffects,
+  loggedCompteReducer,
+} from './state/logged-compte-state';
+import { PageHomeComponent } from './pages/page-home/page-home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +60,9 @@ import { HttpClientModule } from '@angular/common/http';
     CardUserInfoComponent,
     AnimationFormContainerComponent,
     ActiviteFormContainerComponent,
+    LoginFormComponent,
+    PageLoginComponent,
+    PageHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,11 +81,17 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTabsModule,
     HttpClientModule,
+    MatSnackBarModule,
     StoreModule.forRoot({
       'animation-state': animationReducer,
       'activite-state': activiteReducer,
+      'logged-compte-state': loggedCompteReducer,
     }),
-    EffectsModule.forRoot([AnimationEffects, ActiviteEffects]),
+    EffectsModule.forRoot([
+      AnimationEffects,
+      ActiviteEffects,
+      LoggedCompteEffects,
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],

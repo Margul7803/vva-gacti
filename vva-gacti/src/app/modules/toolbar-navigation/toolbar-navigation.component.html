@@ -1,7 +1,7 @@
 <p>
   <mat-toolbar color="primary">
     <span class="title-site">Gacti VVA</span>
-    <span class="button-action">
+    <span *ngIf="loggedCompte$ | async as compte" class="button-action">
       <button
         mat-button
         class="button-toolbar-animation"
@@ -14,13 +14,13 @@
         routerLink="/animation-list">
         <mat-icon>search</mat-icon>
       </button>
-      <button
+      <button *ngIf="compte.type.toString() ==='ENCADRANT' "
         mat-button
         [matMenuTriggerFor]="espace"
         class="button-toolbar-espace-encadrant">
         Espace Encadrant
       </button>
-      <button
+      <button *ngIf="compte.type.toString() ==='ENCADRANT'"
         mat-icon-button
         [matMenuTriggerFor]="espace"
         class="button-toolbar-espace-encadrant-icon">
@@ -35,12 +35,15 @@
         Activité
       </button>
     </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="account">
+    <button *ngIf="loggedCompte$ | async as compte" 
+      mat-icon-button
+      [matMenuTriggerFor]="account"
+      >
       <mat-icon class="icon-display">account_circle</mat-icon>
-    </button>
+    </button >
     <mat-menu #account="matMenu">
-      <button mat-menu-item routerLink="/user-info">Mon compte</button>
-      <button mat-menu-item>Se déconnecté</button>
+      <button mat-menu-item routerLink="/compte-info">Mon compte</button>
+      <button mat-menu-item (click)="logoutCompte()">Se déconnecté</button>
     </mat-menu>
   </mat-toolbar>
 </p>

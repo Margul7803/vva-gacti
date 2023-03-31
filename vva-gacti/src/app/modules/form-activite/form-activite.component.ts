@@ -6,6 +6,7 @@ import { codeEtatList } from 'src/app/mock/activite';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
 import { convertDate } from 'src/app/services/global service';
+import { selectActiviteAction } from 'src/app/state/activite-state';
 import { selectAnimationList } from 'src/app/state/animation-state';
 
 @Component({
@@ -24,7 +25,7 @@ export class FormActiviteComponent implements OnInit {
   @Input()
   model: Activite | null = {
     codeAnimation: '',
-    codeEtat: null,
+    Etat: null,
     date: null,
     heureDebut: null,
     dateAnnule: null,
@@ -46,14 +47,13 @@ export class FormActiviteComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   ngOnInit() {
-    console.log(this.model?.codeEtat);
     this.animationList$ = this.store
       .select(selectAnimationList)
       .pipe(takeUntil(this.destroyed$));
     this.activiteForm = this.formBuilder.group(
       {
         codeAnimation: [this.model?.codeAnimation, Validators.required],
-        codeEtat: [this.model?.codeEtat, Validators.required],
+        Etat: [this.model?.Etat?.code, Validators.required],
         date: [
           this.model?.date
             ? new Date(this.model.date).toISOString().substring(0, 10)
@@ -140,13 +140,8 @@ export class FormActiviteComponent implements OnInit {
             this.activiteForm.get('heureRendezVous')?.value +
             ':00.000Z'
         );
-
       this.newActivite.emit(this.activiteForm.value);
-      this.activiteForm.reset();
-      Object.keys(this.activiteForm.controls).forEach(key => {
-        const control = this.activiteForm.controls[key];
-        control.setErrors(null);
-      });
+      this.store.dispatch(selectActiviteAction({ activite: null }));
     }
   }
 

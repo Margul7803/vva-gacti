@@ -25,4 +25,6 @@ export const logoutCompteSuccess = createAction(
   '[LOGGED COMPTE STATE] logout success'
 );
 
-export const logoutUserError = createAction('[LOGGED USER STATE] logout error');
+export const logoutUserError = createAction(
+  '[LOGGED COMPTE STATE] logout error'
+);

@@ -11,6 +11,7 @@ import { activites } from 'src/app/mock/activite';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
 import {
+  selectActivite,
   selectActiviteAction,
   selectActvitieList,
 } from 'src/app/state/activite-state';
@@ -31,6 +32,8 @@ export class PageEspaceEncadrantActiviteComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<boolean>();
 
   activites = activites;
+
+  public selectedActivite$!: Observable<Activite | null>;
   public animationList$: Observable<Animation[]> | null = null;
   public activiteList$: Observable<Activite[]> | null = null;
   selectedAnimation!: Animation | null;
@@ -44,6 +47,9 @@ export class PageEspaceEncadrantActiviteComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$));
     this.activiteList$ = this.store
       .select(selectActvitieList)
+      .pipe(takeUntil(this.destroyed$));
+    this.selectedActivite$ = this.store
+      .select(selectActivite)
       .pipe(takeUntil(this.destroyed$));
   }
 
@@ -66,22 +72,16 @@ export class PageEspaceEncadrantActiviteComponent implements OnInit, OnDestroy {
     );
   }
 
-  clearSelectionCode(): void {
+  clearSelection(): void {
+    this.store.dispatch(selectAnimationAction({ animation: null }));
+    this.store.dispatch(selectActiviteAction({ activite: null }));
+
+    this.selectedAnimation = null;
     this.selectedActivite = null;
   }
 
   clearSelectionDate(): void {
+    this.store.dispatch(selectActiviteAction({ activite: null }));
     this.selectedActivite = null;
-  }
-
-  convertDate(date: string | undefined): string {
-    if (date !== undefined) {
-      const dateParts = date.split('-');
-      const day = dateParts[2];
-      const month = dateParts[1];
-      const year = dateParts[0];
-      return `${day}/${month}/${year}`;
-    }
-    return '';
   }
 }

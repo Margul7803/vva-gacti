@@ -1,0 +1,6 @@
+<div class="page-container">
+  <app-login-form
+    [error]="loginError$ | async"
+    (login)="loginAction($event)"
+    class="login-form"></app-login-form>
+</div>

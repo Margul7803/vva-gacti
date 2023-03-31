@@ -154,6 +154,44 @@ async function main() {
       username:"mario.aboujamra",
     }
   })
+
+  const compt2 = await prisma.compte.upsert({
+    where: { username: "kevin.custodio" },
+    update: {},
+    create: {
+      dateDebutSej:"2022-07-05T00:00:00.000Z",
+      dateFerm:"2022-07-05T00:00:00.000Z",
+      dateFinSej:"2022-07-05T00:00:00.000Z",
+      dateInscr:"2022-07-05T00:00:00.000Z",
+      dateNais:"2022-07-05T00:00:00.000Z",
+      mail:"kevin.custodio@gmail.com",
+      nom:"Custodio",
+      password:"$2a$12$jT9UlT.KQrRe7ZnTtOFxp.q/7CyHFLQ7E2VDx/wv6jvjVSE/pNaim",
+      prenom:"Kevin",
+      tel:"0664128490",
+      type:"VACANCIER",
+      username:"kevin.custodio",
+    }
+  })
+
+  const compt3 = await prisma.compte.upsert({
+    where: { username: "enzo.marix" },
+    update: {},
+    create: {
+      dateDebutSej:"2022-07-05T00:00:00.000Z",
+      dateFerm:"2022-07-05T00:00:00.000Z",
+      dateFinSej:"2022-07-05T00:00:00.000Z",
+      dateInscr:"2022-07-05T00:00:00.000Z",
+      dateNais:"2022-07-05T00:00:00.000Z",
+      mail:"enzo.marix@gmail.com",
+      nom:"Marix",
+      password:"$2a$12$TkXSHTcdPqogp3o3fOYDBuu6gIuF0.6bNDy6JVYpwMj0cqAxLHCp2",
+      prenom:"Enzo",
+      tel:"0664126787",
+      type:"ENCADRANT",
+      username:"enzo.marix",
+    }
+  })
 }
 
 main()

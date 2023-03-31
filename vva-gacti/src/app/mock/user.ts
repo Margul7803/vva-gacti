@@ -1,4 +1,4 @@
-import { Profile, Compte } from '../models/compte';
+import { Profil, Compte } from '../models/compte';
 
 const dateMock: Date = new Date('December 17, 1995 03:24:00');
 
@@ -13,5 +13,5 @@ export const user: Compte = {
   dateNais: dateMock,
   mail: 'mario.aboujamra@gmail.com',
   tel: '06 64 12 84 21',
-  type: Profile.ADMIN,
+  type: Profil.ADMIN,
 };
