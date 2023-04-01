@@ -1,0 +1,16 @@
+<div *ngIf="selectedActivite$ | async as activite">
+  <div *ngIf="LoggedCompte$ | async as loggedCompte">
+    <div *ngIf="isInscrit(loggedCompte, activite)">
+      {{ loggedCompte.username }}
+    </div>
+    <div *ngFor="let inscription of activite.Inscription">
+      <div
+        *ngIf="
+          inscription.dateAnnule === null &&
+          inscription.username !== loggedCompte.username
+        ">
+        {{ inscription.username }}
+      </div>
+    </div>
+  </div>
+</div>

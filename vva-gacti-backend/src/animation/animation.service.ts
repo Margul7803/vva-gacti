@@ -86,6 +86,7 @@ export class AnimationService {
             prix: true,
             Etat: true,
             Animation: true,
+            Inscription: true,
           },
         },
         TypeAnim: true,

@@ -12,6 +12,11 @@ import {
   selectLoggedCompteUsername,
 } from 'src/app/state/logged-compte-state';
 import { v4 as uuidv4 } from 'uuid';
+import { PopinBuilderService } from '../popin';
+import { UserListInscriptionComponent } from '../user-list-inscription/user-list-inscription.component';
+import { selectActiviteAction } from 'src/app/state/activite-state';
+import { updateAnimationInscriptionActionSuccess } from 'src/app/state/animation-state';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-activite',
@@ -20,9 +25,18 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class CardActiviteComponent implements OnInit, OnDestroy {
   @Input()
+  nbplace!: number | null;
+
+  @Input()
   activiteCard!: Activite;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private popinBuilder: PopinBuilderService,
+    private _snackBar: MatSnackBar
+  ) {}
+
+  durationInSeconds = 4;
 
   loggedCompte$ = this.store.select(selectLoggedCompte);
   loggedCompteUsername!: string | null;
@@ -61,30 +75,44 @@ export class CardActiviteComponent implements OnInit, OnDestroy {
         inscr.date === this.activiteCard.date &&
         inscr.codeAnimation === this.activiteCard.codeAnimation
     );
-    if (inscription) {
-      this.store.dispatch(
-        deInscriptionCompte({
-          inscription: {
-            noInscrip: inscription?.noInscrip,
-            dateAnnule: null,
-          },
-        })
-      );
-    } else {
-      this.loggedCompteUsername
-        ? this.store.dispatch(
-            inscriptionCompte({
+    const inscriptionValid = this.activiteCard.Inscription?.filter(
+      inscr => inscr.dateAnnule === null
+    );
+    console.log(inscriptionValid)
+    console.log(this.nbplace)
+
+    if (inscriptionValid && this.nbplace) {
+      if (this.nbplace > inscriptionValid?.length) {
+        if (inscription) {
+          this.store.dispatch(
+            deInscriptionCompte({
               inscription: {
-                username: this.loggedCompteUsername,
-                codeAnimation: this.activiteCard.codeAnimation,
-                date: this.activiteCard.date,
-                dateInscrip: new Date(),
-                noInscrip: uuidv4(),
+                noInscrip: inscription?.noInscrip,
                 dateAnnule: null,
               },
             })
-          )
-        : null;
+          );
+        } else {
+          const uid = uuidv4();
+          this.loggedCompteUsername
+            ? this.store.dispatch(
+                inscriptionCompte({
+                  inscription: {
+                    username: this.loggedCompteUsername,
+                    codeAnimation: this.activiteCard.codeAnimation,
+                    date: this.activiteCard.date,
+                    dateInscrip: new Date(),
+                    noInscrip: uid,
+                    dateAnnule: null,
+                  },
+                })
+              )
+            : null;
+        }
+      }else{this._snackBar.open('Pas de place disponible', 'OK', {
+        duration: this.durationInSeconds * 1000,
+        panelClass: ['error-snackbar'],
+      });}
     }
   }
 
@@ -116,29 +144,14 @@ export class CardActiviteComponent implements OnInit, OnDestroy {
     return inscription ? true : false;
   }
 
-  FormatDateToShortDate(date: Date | null): string {
-    if (date !== null) {
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
-      if (month < 10) {
-        return day + '/' + '0' + month + '/' + year;
-      } else {
-        return day + '/' + month + '/' + year;
-      }
-    } else {
-      return '';
+  userListInscr(activite: Activite): void {
+    if (activite) {
+      this.store.dispatch(selectActiviteAction({ activite }));
     }
-  }
-
-  convertDate(date: string | undefined): string {
-    if (date !== undefined) {
-      const dateParts = date.split('-');
-      const day = dateParts[2];
-      const month = dateParts[1];
-      const year = dateParts[0];
-      return `${day}/${month}/${year}`;
-    }
-    return '';
+    const myBuilder = this.popinBuilder.getBuilder();
+    const popinRef = myBuilder
+      .setTitle('Liste des utilisateurs inscrits')
+      .setComponent(UserListInscriptionComponent)
+      .build();
   }
 }

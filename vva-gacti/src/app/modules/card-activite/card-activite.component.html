@@ -1,61 +1,69 @@
 <div class="card-activite" *ngIf="loggedCompte$ | async as loggedCompte">
-  <mat-card class="card-activite">
-    <mat-card-header class="card-header">
-      <div class="header">
-        <mat-card-title
-          >Resonsable:
-          {{
-            activiteCard.nomResponsable + ' ' + activiteCard.prenomResponsable
-          }}</mat-card-title
-        >
-        <mat-card-subtitle>
-          Le {{ activiteCard.date | date : 'dd/MM/yyyy' }}</mat-card-subtitle
-        >
-      </div>
-      <div class="subtitle-header">
-        <mat-card-subtitle
-          >Activité {{ activiteCard.Etat?.nom }}</mat-card-subtitle
-        >
-      </div>
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      <span>
-        Heure de rendez-vous:
-        {{ activiteCard.heureRendezVous | date : 'HH:mm' }}</span
-      >
-      <span>
-        Début-Fin:
-        {{ activiteCard.heureDebut | date : 'HH:mm' }} -
-        {{ activiteCard.heureFin | date : 'HH:mm' }}</span
-      >
-      <div class="content-footer">
-        <span> Prix: {{ activiteCard.prix }} €</span>
-        <div class="button-group">
-          <button
-            *ngIf="!isInscrit(activiteCard)"
-            mat-raised-button
-            (click)="inscrAction()"
-            color="primary"
-            class="buttonAction">
-            S'inscrire
-          </button>
-          <button
-            *ngIf="isInscrit(activiteCard)"
-            mat-raised-button
-            (click)="deInscrAction()"
-            color="warn"
-            class="buttonAction">
-            Se désinstcrire
-          </button>
-          <button
-            *ngIf="loggedCompte.type.toString() === 'ENCADRANT'"
-            mat-raised-button
-            (click)="togglePanel()"
-            class="buttonActionEnc">
-            Voir les inscrits
-          </button>
+  <div
+    *ngIf="
+      loggedCompte.type.toString() === 'ENCADRANT' ||
+      activiteCard.Etat?.code !== '3'
+    ">
+    <mat-card class="card-activite">
+      <mat-card-header class="card-header">
+        <div class="header">
+          <mat-card-title
+            >Resonsable:
+            {{
+              activiteCard.nomResponsable + ' ' + activiteCard.prenomResponsable
+            }}</mat-card-title
+          >
+          <mat-card-subtitle>
+            Le {{ activiteCard.date | date : 'dd/MM/yyyy' }}</mat-card-subtitle
+          >
         </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+        <div class="subtitle-header">
+          <mat-card-subtitle
+            >Activité {{ activiteCard.Etat?.nom }}</mat-card-subtitle
+          >
+        </div>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <span>
+          Heure de rendez-vous:
+          {{ activiteCard.heureRendezVous | date : 'HH:mm' }}</span
+        >
+        <span>
+          Début-Fin:
+          {{ activiteCard.heureDebut | date : 'HH:mm' }} -
+          {{ activiteCard.heureFin | date : 'HH:mm' }}</span
+        >
+        <div class="content-footer">
+          <span> Prix: {{ activiteCard.prix }} €</span>
+          <div class="button-group">
+            <button
+              *ngIf="
+                !isInscrit(activiteCard) && activiteCard.Etat?.code !== '3'
+              "
+              mat-raised-button
+              (click)="inscrAction()"
+              color="primary"
+              class="buttonAction">
+              S'inscrire
+            </button>
+            <button
+              *ngIf="isInscrit(activiteCard) && activiteCard.Etat?.code !== '3'"
+              mat-raised-button
+              (click)="deInscrAction()"
+              color="warn"
+              class="buttonAction">
+              Se désinstcrire
+            </button>
+            <button
+              *ngIf="loggedCompte.type.toString() === 'ENCADRANT'"
+              mat-raised-button
+              (click)="userListInscr(activiteCard)"
+              class="buttonActionEnc">
+              Voir les inscrits
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

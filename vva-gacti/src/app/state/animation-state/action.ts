@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from '../../models/animation';
+import { Inscription } from 'src/app/models/inscription';
 
 export const loadAnimationList = createAction('[ANIMATION STATE] load');
 
@@ -91,5 +92,20 @@ export const createAnimationActionSuccess = createAction(
 
 export const createAnimationActionError = createAction(
   '[ANIMATION STATE] Create Animation error',
+  props<{ error: Error }>()
+);
+
+export const updateAnimationInscriptionAction = createAction(
+  '[ANIMATION STATE] Update Animation inscription',
+  props<{ inscription: Inscription }>()
+);
+
+export const updateAnimationInscriptionActionSuccess = createAction(
+  '[ANIMATION STATE] Update Animation inscription success',
+  props<{ inscription: Inscription }>()
+);
+
+export const updateAnimationInscriptionActionError = createAction(
+  '[ANIMATION STATE] Update Animation inscription error',
   props<{ error: Error }>()
 );

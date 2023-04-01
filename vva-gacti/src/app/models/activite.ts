@@ -1,3 +1,5 @@
+import { Inscription } from './inscription';
+
 export interface Activite {
   codeAnimation: string;
   date: Date | null;
@@ -9,6 +11,7 @@ export interface Activite {
   nomResponsable: string;
   prenomResponsable: string;
   dateAnnule?: Date | null;
+  Inscription?: Inscription[] | null;
 }
 
 export interface EtatActivite {

@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Animation } from 'src/app/models/animation';
-import { selectAnimationList } from 'src/app/state/animation-state';
+import { selectActiviteAction } from 'src/app/state/activite-state';
+import { selectAnimationAction, selectAnimationList } from 'src/app/state/animation-state';
 
 @Component({
   selector: 'app-page-animation-list',
@@ -25,5 +26,6 @@ export class PageAnimationListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
+    this.store.dispatch(selectActiviteAction({activite: null}))
   }
 }

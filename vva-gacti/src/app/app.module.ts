@@ -43,6 +43,8 @@ import {
 } from './state/logged-compte-state';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PopinModule } from './modules/popin';
+import { UserListInscriptionComponent } from './modules/user-list-inscription/user-list-inscription.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginFormComponent,
     PageLoginComponent,
     PageHomeComponent,
+    UserListInscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatTabsModule,
     HttpClientModule,
     MatSnackBarModule,
+    PopinModule,
     StoreModule.forRoot({
       'animation-state': animationReducer,
       'activite-state': activiteReducer,

@@ -53,6 +53,7 @@ export class ActiviteService {
         prix: true,
         Etat: true,
         Animation: true,
+        Inscription: true,
       },
     });
   }
@@ -78,6 +79,7 @@ export class ActiviteService {
         prix: true,
         Etat: true,
         Animation: true,
+        Inscription: true,
       },
     });
   }
@@ -119,6 +121,7 @@ export class ActiviteService {
         prix: true,
         Etat: true,
         Animation: true,
+        Inscription: true,
       },
     });
   }

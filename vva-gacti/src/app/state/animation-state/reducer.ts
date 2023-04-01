@@ -8,6 +8,7 @@ import {
   updateAnimationActionSuccess,
   updateAnimationActiviteAction,
   updateAnimationActiviteSuccess,
+  updateAnimationInscriptionActionSuccess,
 } from './action';
 import { AnimationState } from './state';
 
