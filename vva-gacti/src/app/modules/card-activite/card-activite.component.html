@@ -31,14 +31,16 @@
       <div class="content-footer">
         <span> Prix: {{ activiteCard.prix }} €</span>
         <div class="button-group">
-          <button *ngIf="!isInscrit(activiteCard)"
+          <button
+            *ngIf="!isInscrit(activiteCard)"
             mat-raised-button
             (click)="inscrAction()"
             color="primary"
             class="buttonAction">
             S'inscrire
           </button>
-          <button *ngIf="isInscrit(activiteCard)"
+          <button
+            *ngIf="isInscrit(activiteCard)"
             mat-raised-button
             (click)="deInscrAction()"
             color="warn"

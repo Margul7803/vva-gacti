@@ -1,4 +1,4 @@
-import { Inscription } from "./inscription";
+import { Inscription } from './inscription';
 
 export interface Compte {
   username: string;

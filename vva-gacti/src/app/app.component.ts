@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store, private router: Router) {}
   ngOnInit(): void {
-    this.router.navigate(['/compte-connexion']); 
+    this.router.navigate(['/compte-connexion']);
     this.store.dispatch(loadAnimationList());
     this.store.dispatch(loadActiviteList());
   }

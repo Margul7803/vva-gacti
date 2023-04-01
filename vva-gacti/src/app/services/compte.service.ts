@@ -30,7 +30,8 @@ export class CompteService {
       `${this.endpoint()}/${compteToUpdate.noInscrip}`,
       {
         dateAnnule: compteToUpdate.dateAnnule,
-    });
+      }
+    );
   }
 
   private endpoint(): string {
