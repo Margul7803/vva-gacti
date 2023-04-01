@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 import { AnimationService } from './animation/animation.service';
 import { ActiviteService } from './activite/activite.service';
 import { CompteService } from './compte/compte.service';
+import { InscriptionModule } from './inscription/inscription.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { CompteService } from './compte/compte.service';
       session: false,
       epiresIn: new ConfigService().get<string>('EXPIRES_IN'),
     }),
+    InscriptionModule,
   ],
   controllers: [AppController],
   providers: [

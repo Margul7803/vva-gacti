@@ -44,7 +44,6 @@ import {
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 @NgModule({
   declarations: [
     AppComponent,

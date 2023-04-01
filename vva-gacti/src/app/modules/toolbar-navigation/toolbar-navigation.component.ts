@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logoutCompte, selectLoggedCompte } from 'src/app/state/logged-compte-state';
+import {
+  logoutCompte,
+  selectLoggedCompte,
+} from 'src/app/state/logged-compte-state';
 
 @Component({
   selector: 'app-toolbar-navigation',

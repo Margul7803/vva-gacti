@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadActiviteList } from './state/activite-state';
 import { loadAnimationList } from './state/animation-state';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,9 @@ import { loadAnimationList } from './state/animation-state';
 export class AppComponent implements OnInit {
   title = 'vva-gacti';
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
   ngOnInit(): void {
+    this.router.navigate(['/compte-connexion']);
     this.store.dispatch(loadAnimationList());
     this.store.dispatch(loadActiviteList());
   }

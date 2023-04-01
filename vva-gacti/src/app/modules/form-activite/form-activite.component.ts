@@ -5,7 +5,6 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { codeEtatList } from 'src/app/mock/activite';
 import { Activite } from 'src/app/models/activite';
 import { Animation } from 'src/app/models/animation';
-import { convertDate } from 'src/app/services/global service';
 import { selectActiviteAction } from 'src/app/state/activite-state';
 import { selectAnimationList } from 'src/app/state/animation-state';
 

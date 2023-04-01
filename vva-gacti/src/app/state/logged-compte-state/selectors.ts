@@ -24,3 +24,13 @@ export const selectCompteLoginError = createSelector(
   selectLoggedCompteState,
   state => state?.errors ?? null
 );
+
+export const selectLoggedCompteUsername = createSelector(
+  selectLoggedCompteState,
+  state => state?.compte?.username ?? null
+);
+
+export const selectLoggedCompteInscription = createSelector(
+  selectLoggedCompteState,
+  state => state?.compte?.Inscription ?? null
+);

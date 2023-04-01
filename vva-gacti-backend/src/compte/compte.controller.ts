@@ -30,10 +30,10 @@ import { Profils } from 'src/role/roles.decorator';
 import { Profil } from '@prisma/client';
 import { RolesGuard } from 'src/role/roles.guard';
 
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard, RolesGuard)
-@ApiSecurity('access-key')
-@UseInterceptors(ClassSerializerInterceptor)
+//@ApiBearerAuth()
+//@UseGuards(JwtAuthGuard, RolesGuard)
+//@ApiSecurity('access-key')
+//@UseInterceptors(ClassSerializerInterceptor)
 @Profils(Profil.ADMIN)
 @ApiTags('compte')
 @Controller('compte')

@@ -58,14 +58,16 @@ model EtatActivite {
 }
 
 model Inscription {
-  noInscrip     String   @id @unique
-  Compte        Compte   @relation(fields: [username], references: [username])
+  noInscrip     String    @id @unique
+  Compte        Compte    @relation(fields: [username], references: [username], onDelete: Cascade)
   username      String
-  Activite      Activite @relation(fields: [codeAnimation, date], references: [codeAnimation, date])
-  dateInscrip   DateTime @db.Date
-  dateAnnule    DateTime @db.Date
+  Activite      Activite  @relation(fields: [codeAnimation, date], references: [codeAnimation, date], onDelete: Cascade)
+  dateInscrip   DateTime  @db.Date
+  dateAnnule    DateTime? @db.Date
   codeAnimation String
-  date          DateTime @db.Date
+  date          DateTime  @db.Date
+
+  @@unique([codeAnimation, date, username])
 }
 
 model Compte {

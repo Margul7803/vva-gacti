@@ -1,4 +1,4 @@
-<div class="card-activite">
+<div class="card-activite" *ngIf="loggedCompte$ | async as loggedCompte">
   <mat-card class="card-activite">
     <mat-card-header class="card-header">
       <div class="header">
@@ -32,20 +32,23 @@
         <span> Prix: {{ activiteCard.prix }} €</span>
         <div class="button-group">
           <button
+            *ngIf="!isInscrit(activiteCard)"
             mat-raised-button
-            (click)="togglePanel()"
+            (click)="inscrAction()"
             color="primary"
             class="buttonAction">
             S'inscrire
           </button>
           <button
+            *ngIf="isInscrit(activiteCard)"
             mat-raised-button
-            (click)="togglePanel()"
+            (click)="deInscrAction()"
             color="warn"
             class="buttonAction">
             Se désinstcrire
           </button>
           <button
+            *ngIf="loggedCompte.type.toString() === 'ENCADRANT'"
             mat-raised-button
             (click)="togglePanel()"
             class="buttonActionEnc">
