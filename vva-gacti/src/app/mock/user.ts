@@ -14,4 +14,5 @@ export const user: Compte = {
   mail: 'mario.aboujamra@gmail.com',
   tel: '06 64 12 84 21',
   type: Profil.ADMIN,
+  Inscription: [],
 };

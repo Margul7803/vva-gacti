@@ -14,13 +14,15 @@
         routerLink="/animation-list">
         <mat-icon>search</mat-icon>
       </button>
-      <button *ngIf="compte.type.toString() ==='ENCADRANT' "
+      <button
+        *ngIf="compte.type.toString() === 'ENCADRANT'"
         mat-button
         [matMenuTriggerFor]="espace"
         class="button-toolbar-espace-encadrant">
         Espace Encadrant
       </button>
-      <button *ngIf="compte.type.toString() ==='ENCADRANT'"
+      <button
+        *ngIf="compte.type.toString() === 'ENCADRANT'"
         mat-icon-button
         [matMenuTriggerFor]="espace"
         class="button-toolbar-espace-encadrant-icon">
@@ -35,12 +37,12 @@
         Activité
       </button>
     </mat-menu>
-    <button *ngIf="loggedCompte$ | async as compte" 
+    <button
+      *ngIf="loggedCompte$ | async as compte"
       mat-icon-button
-      [matMenuTriggerFor]="account"
-      >
+      [matMenuTriggerFor]="account">
       <mat-icon class="icon-display">account_circle</mat-icon>
-    </button >
+    </button>
     <mat-menu #account="matMenu">
       <button mat-menu-item routerLink="/compte-info">Mon compte</button>
       <button mat-menu-item (click)="logoutCompte()">Se déconnecté</button>

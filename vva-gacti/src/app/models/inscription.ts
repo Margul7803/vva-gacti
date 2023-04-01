@@ -3,8 +3,9 @@ import { Compte } from './compte';
 
 export interface Inscription {
   noInscrip: string;
-  Compte: Compte;
-  Activite: Activite;
-  dateInscrip: Date;
-  dateAnnule: Date;
+  dateInscrip?: Date;
+  dateAnnule?: Date | null;
+  date?: Date | null;
+  codeAnimation?: string;
+  username?: string;
 }

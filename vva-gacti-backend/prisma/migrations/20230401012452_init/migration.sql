@@ -56,7 +56,7 @@ CREATE TABLE "Inscription" (
     "noInscrip" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "dateInscrip" DATE NOT NULL,
-    "dateAnnule" DATE NOT NULL,
+    "dateAnnule" DATE,
     "codeAnimation" TEXT NOT NULL,
     "date" DATE NOT NULL,
 
@@ -94,6 +94,9 @@ CREATE UNIQUE INDEX "EtatActivite_code_key" ON "EtatActivite"("code");
 CREATE UNIQUE INDEX "Inscription_noInscrip_key" ON "Inscription"("noInscrip");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Inscription_codeAnimation_date_username_key" ON "Inscription"("codeAnimation", "date", "username");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Compte_username_key" ON "Compte"("username");
 
 -- AddForeignKey
@@ -106,7 +109,7 @@ ALTER TABLE "Activite" ADD CONSTRAINT "Activite_codeEtat_fkey" FOREIGN KEY ("cod
 ALTER TABLE "Activite" ADD CONSTRAINT "Activite_codeAnimation_fkey" FOREIGN KEY ("codeAnimation") REFERENCES "Animation"("codeAnimation") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Inscription" ADD CONSTRAINT "Inscription_username_fkey" FOREIGN KEY ("username") REFERENCES "Compte"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Inscription" ADD CONSTRAINT "Inscription_username_fkey" FOREIGN KEY ("username") REFERENCES "Compte"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Inscription" ADD CONSTRAINT "Inscription_codeAnimation_date_fkey" FOREIGN KEY ("codeAnimation", "date") REFERENCES "Activite"("codeAnimation", "date") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Inscription" ADD CONSTRAINT "Inscription_codeAnimation_date_fkey" FOREIGN KEY ("codeAnimation", "date") REFERENCES "Activite"("codeAnimation", "date") ON DELETE CASCADE ON UPDATE CASCADE;

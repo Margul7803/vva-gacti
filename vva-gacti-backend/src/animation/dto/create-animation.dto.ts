@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Activite } from '@prisma/client';
-import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateAnimationDto {
   @IsString()

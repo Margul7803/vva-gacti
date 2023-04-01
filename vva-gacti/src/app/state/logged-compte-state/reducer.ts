@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  deInscriptionCompteSuccess,
+  inscriptionCompteSuccess,
   loginCompteError,
   loginCompteSuccess,
   logoutCompteSuccess,
@@ -36,6 +38,34 @@ export const loggedCompteReducer = createReducer(
     return {
       ...state,
       errors: props.error.message,
+    };
+  }),
+
+  on(inscriptionCompteSuccess, (state, props): LoggedCompteState => {
+    return {
+      ...state,
+      compte: state.compte
+        ? {
+            ...state.compte,
+            Inscription: [...state.compte.Inscription, props.inscription],
+          }
+        : null,
+    };
+  }),
+
+  on(deInscriptionCompteSuccess, (state, props): LoggedCompteState => {
+    return {
+      ...state,
+      compte: state.compte
+        ? {
+            ...state.compte,
+            Inscription: state.compte.Inscription.map(inscription =>
+              inscription.noInscrip === props.inscription.noInscrip
+                ? { ...inscription, dateAnnule: props.inscription.dateAnnule }
+                : inscription
+            ),
+          }
+        : null,
     };
   })
 );

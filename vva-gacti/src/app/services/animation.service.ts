@@ -27,10 +27,11 @@ export class AnimationService {
   }
 
   updateAnimation(animationToUpdate: Animation): Observable<Animation> {
-    console.log(animationToUpdate)
+    console.log(animationToUpdate);
     return this.http.patch<Animation>(
       `${this.endpoint()}/${animationToUpdate.codeAnimation}`,
-      {codeAnimation: animationToUpdate.codeAnimation,
+      {
+        codeAnimation: animationToUpdate.codeAnimation,
         nom: animationToUpdate.nom,
         codeTypeid: animationToUpdate.TypeAnim,
         commentaire: animationToUpdate.commentaire,
@@ -40,7 +41,8 @@ export class AnimationService {
         duree: animationToUpdate.duree,
         limiteAge: animationToUpdate.limiteAge,
         nbPlaceDispo: animationToUpdate.nbPlaceDispo,
-        tarif: animationToUpdate.tarif,}
+        tarif: animationToUpdate.tarif,
+      }
     );
   }
 

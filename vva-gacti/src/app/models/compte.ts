@@ -1,3 +1,5 @@
+import { Inscription } from "./inscription";
+
 export interface Compte {
   username: string;
   password?: string;
@@ -6,11 +8,12 @@ export interface Compte {
   dateInscr: Date;
   dateFerm: Date;
   type: Profil;
-  dateDebutSej: Date;
+  dateDebutSej: Date | null;
   dateFinSej: Date;
   dateNais: Date;
   mail: string;
   tel: string;
+  Inscription: Inscription[];
 }
 
 export interface Login {

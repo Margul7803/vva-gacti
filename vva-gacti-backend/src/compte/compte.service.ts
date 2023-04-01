@@ -78,6 +78,7 @@ export class CompteService {
   async isPasswordMatch(username: string, password: string) {
     const user = await this.prisma.compte.findFirst({
       where: { username: username },
+      include: { Inscription: true },
     });
     if (!user) {
       throw new HttpException(
@@ -87,7 +88,10 @@ export class CompteService {
     }
     const areEqual = await bcrypt.compare(password, user.password);
     if (!areEqual) {
-      throw new HttpException('Information de connexion invalid', HttpStatus.UNAUTHORIZED);
+      throw new HttpException(
+        'Information de connexion invalid',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
     const { password: p, ...rest } = user;
     return rest;
